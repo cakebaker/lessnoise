@@ -5,12 +5,11 @@
 // @description      LessNoise removes some clutter from twitter.com, auto-clicks on the "new tweets" bar
 // @include          https://twitter.com/
 // @require          http://code.jquery.com/jquery-1.8.2.min.js
+// @resource         css lessnoise.css
 // ==/UserScript==
 
 $(document).ready(function() {
-  $('div.module.wtf-module').hide();
-  $('div.module.trends').hide();
-  $('div.module.site-footer').hide();
+  GM_addStyle(GM_getResourceText('css'));
 
   var observer = new MutationObserver(function(mutations) {
     $('.new-tweets-bar').click();
