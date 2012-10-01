@@ -2,12 +2,14 @@
 
 ## Purpose
 
-LessNoise is a simple GreaseMonkey script to fix some parts of the web UI of Twitter. It does:
+LessNoise is a simple GreaseMonkey script to improve some parts of Twitter's web UI. It does:
 
 * hide the "Who to follow" box
 * hide the trends box
-* hide the footer
+* hide the sidebar footer
 * automatically click on the "x new tweets" bar
+* bypass the t.co URL shortener
+* show expanded URLs
 
 ## Contact
 
