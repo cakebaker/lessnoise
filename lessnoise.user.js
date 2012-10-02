@@ -11,38 +11,49 @@
 $(document).ready(function() {
   GM_addStyle(GM_getResourceText('css'));
 
-  LessNoise.expandUrls();
+  $('.stream-item').each(function() {
+    LessNoise.expandUrlsOfTweet($(this));
+  });
 
-  LessNoise.setupObserver('.stream-container', LessNoise.clickNewTweets, { childList: true });
-  LessNoise.setupObserver('#stream-items-id', LessNoise.expandUrls, { childList: true });
+  LessNoise.setupObserver('.stream-container', LessNoise.clickNewTweetsBar, { childList: true });
+  LessNoise.setupObserver('#stream-items-id', LessNoise.processTweets, { childList: true });
 });
 
 function LessNoise() {
 }
 
-LessNoise.clickNewTweets = function() {
+LessNoise.clickNewTweetsBar = function() {
   $('.new-tweets-bar').click();
 }
 
-LessNoise.expandUrls = function() {
-  $('.twitter-timeline-link').not('.ln-expanded').each(function() {
+LessNoise.expandUrlsOfTweet = function(tweet) {
+  $(tweet).find('.twitter-timeline-link').each(function() {
     var urlToExpand = $(this).data('expanded-url');
     if (urlToExpand !== undefined) {
-      var that = this;
+      var linkElement = this;
       GM_xmlhttpRequest({
         url: urlToExpand,
         method: "HEAD",
-        onload: function(response) { LessNoise.handleExpandedUrl(that, response.finalUrl); }
+        onload: function(response) { LessNoise.handleExpandedUrl(linkElement, response.finalUrl); }
       });
     }
   });
 }
 
-LessNoise.handleExpandedUrl = function(that, expandedUrl) {
-  $(that).attr('href', expandedUrl);
-  $(that).find('.js-display-url').text(expandedUrl);
-  $(that).find('.tco-ellipsis').hide();
-  $(that).addClass('ln-expanded');
+LessNoise.handleExpandedUrl = function(linkElement, expandedUrl) {
+  $(linkElement).attr('href', expandedUrl);
+  $(linkElement).find('.js-display-url').text(expandedUrl);
+  $(linkElement).find('.tco-ellipsis').hide();
+}
+
+LessNoise.processTweets = function(mutations) {
+  mutations.forEach(function(mutation) {
+    if (mutation.addedNodes !== null) {
+      for (var i = 0; i < mutation.addedNodes.length; i++) {
+        LessNoise.expandUrlsOfTweet(mutation.addedNodes[i]);
+      }
+    }
+  });
 }
 
 LessNoise.setupObserver = function(selector, fn, config) {
