@@ -11,10 +11,10 @@
 $(document).ready(function() {
   GM_addStyle(GM_getResourceText('css'));
 
-  LessNoise.expandURLs();
+  LessNoise.expandUrls();
 
   LessNoise.setupObserver('.stream-container', LessNoise.clickNewTweets, { childList: true });
-  LessNoise.setupObserver('#stream-items-id', LessNoise.expandURLs, { childList: true });
+  LessNoise.setupObserver('#stream-items-id', LessNoise.expandUrls, { childList: true });
 });
 
 function LessNoise() {
@@ -24,14 +24,25 @@ LessNoise.clickNewTweets = function() {
   $('.new-tweets-bar').click();
 }
 
-LessNoise.expandURLs = function() {
-  // TODO make HEAD request to get the final url
-  $('.twitter-timeline-link').each(function() {
-    var expandedURL = $(this).data('expanded-url');
-    $(this).attr('href', expandedURL);
-    $(this).find('.js-display-url').text(expandedURL);
-    $(this).find('.tco-ellipsis').hide();
+LessNoise.expandUrls = function() {
+  $('.twitter-timeline-link').not('.ln-expanded').each(function() {
+    var urlToExpand = $(this).data('expanded-url');
+    if (urlToExpand !== undefined) {
+      var that = this;
+      GM_xmlhttpRequest({
+        url: urlToExpand,
+        method: "HEAD",
+        onload: function(response) { LessNoise.handleExpandedUrl(that, response.finalUrl); }
+      });
+    }
   });
+}
+
+LessNoise.handleExpandedUrl = function(that, expandedUrl) {
+  $(that).attr('href', expandedUrl);
+  $(that).find('.js-display-url').text(expandedUrl);
+  $(that).find('.tco-ellipsis').hide();
+  $(that).addClass('ln-expanded');
 }
 
 LessNoise.setupObserver = function(selector, fn, config) {
