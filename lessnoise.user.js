@@ -11,12 +11,13 @@
 $(document).ready(function() {
   GM_addStyle(GM_getResourceText('css'));
 
-  $('.stream-item').each(function() {
-    LessNoise.expandUrlsOfTweet($(this));
-  });
+  var currentUser = $('.js-mini-current-user').data('screen-name');
+  var streamItemProcessingFn = LessNoise.createStreamItemProcessingFn(currentUser);
+
+  $('.stream-item').each(streamItemProcessingFn);
 
   LessNoise.setupObserver('.stream-container', LessNoise.clickNewTweetsBar, { childList: true });
-  LessNoise.setupObserver('#stream-items-id', LessNoise.processTweets, { childList: true });
+  LessNoise.setupObserver('#stream-items-id', LessNoise.createMutationHandlerFn(streamItemProcessingFn), { childList: true });
 });
 
 function LessNoise() {
@@ -26,8 +27,27 @@ LessNoise.clickNewTweetsBar = function() {
   $('.new-tweets-bar').click();
 }
 
-LessNoise.expandUrlsOfTweet = function(tweet) {
-  $(tweet).find('.twitter-timeline-link').each(function() {
+LessNoise.createMutationHandlerFn = function(streamItemProcessingFn) {
+  return function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.addedNodes !== null) {
+        for (var i = 0; i < mutation.addedNodes.length; i++) {
+          streamItemProcessingFn(i, mutation.addedNodes[i]);
+        }
+      }
+    });
+  }
+}
+
+LessNoise.createStreamItemProcessingFn = function(userName) {
+  return function(index, streamItem) {
+    LessNoise.expandUrlsOfTweet($(streamItem));
+    LessNoise.highlightMentionedUser($(streamItem), userName);
+  }
+}
+
+LessNoise.expandUrlsOfTweet = function(streamItem) {
+  $(streamItem).find('.twitter-timeline-link').each(function() {
     var urlToExpand = $(this).data('expanded-url');
     if (urlToExpand !== undefined) {
       var linkElement = this;
@@ -46,14 +66,14 @@ LessNoise.handleExpandedUrl = function(linkElement, expandedUrl) {
   $(linkElement).find('.tco-ellipsis').hide();
 }
 
-LessNoise.processTweets = function(mutations) {
-  mutations.forEach(function(mutation) {
-    if (mutation.addedNodes !== null) {
-      for (var i = 0; i < mutation.addedNodes.length; i++) {
-        LessNoise.expandUrlsOfTweet(mutation.addedNodes[i]);
-      }
+LessNoise.highlightMentionedUser = function(streamItem, userName) {
+  var mentions = $(streamItem).find('.tweet').data('mentions');
+  if (mentions !== undefined) {
+    var mentionsArray = mentions.toLowerCase().split(' ');
+    if (mentionsArray.indexOf(userName.toLowerCase()) != -1) {
+      $(streamItem).addClass('ln-current-user-mentioned');
     }
-  });
+  }
 }
 
 LessNoise.setupObserver = function(selector, fn, config) {

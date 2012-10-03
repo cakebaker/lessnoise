@@ -10,6 +10,7 @@ LessNoise is a simple Greasemonkey script to improve some parts of Twitter's web
 * automatically click on the "x new tweets" bar
 * bypass the t.co URL shortener
 * show expanded URLs
+* highlight tweets that mention the logged-in user
 
 ## Installation
 

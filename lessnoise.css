@@ -1,3 +1,9 @@
 div.module.wtf-module, div.module.trends, div.module.site-footer, .new-tweets-bar {
   display: none;
 }
+
+/* LessNoise-specific classes, prefixed with "ln" */
+
+.ln-current-user-mentioned {
+  background: #FFFAB4;
+}
