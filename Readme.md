@@ -17,6 +17,12 @@ LessNoise is a simple Greasemonkey script to improve some parts of Twitter's web
 * Make sure you have [Greasemonkey](http://www.greasespot.net/) installed (see Tools/Add-ons in Firefox)
 * Install LessNoise by visiting [https://github.com/cakebaker/lessnoise/raw/master/lessnoise.user.js](https://github.com/cakebaker/lessnoise/raw/master/lessnoise.user.js).
 
+## Changelog
+
+### v0.0.1 (2012-10-03)
+
+* Initial release
+
 ## Contact
 
 Feel free to contact me via Twitter ([@dhofstet](https://twitter.com/dhofstet)) or by email (daniel.hofstetter@42dh.com) if you have any questions or feedback.
