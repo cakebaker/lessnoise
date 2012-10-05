@@ -1,11 +1,12 @@
 // ==UserScript==
 // @name             LessNoise
-// @version          0.0.1
+// @version          0.0.2
 // @namespace        https://github.com/cakebaker
 // @description      LessNoise improves Twitter's UI by hiding sidebar elements, showing expanded URLs, and more
 // @include          https://twitter.com/
 // @require          http://code.jquery.com/jquery-1.8.2.min.js
 // @resource         css lessnoise.css
+// @resource         filtermodule filtermodule.html
 // ==/UserScript==
 
 $(document).ready(function() {
@@ -18,7 +19,57 @@ $(document).ready(function() {
 
   LessNoise.setupObserver('.stream-container', LessNoise.clickNewTweetsBar, { childList: true });
   LessNoise.setupObserver('#stream-items-id', LessNoise.createMutationHandlerFn(streamItemProcessingFn), { childList: true });
+
+  LessNoise.addFilterModule();
 });
+
+LessNoise.getFilters = function() {
+  var filters = $.parseJSON(localStorage.getItem('ln-filters')) || { 'filters': [] };
+
+  return filters;
+}
+
+LessNoise.addFilterModule = function() {
+  var filters = LessNoise.getFilters();
+  $('.dashboard').append(GM_getResourceText('filtermodule'));
+  filters.filters.forEach(LessNoise.addFilter);
+
+  $('#ln-new-filter-btn').click(function() {
+    var newFilter = $('#ln-new-filter').val();
+    $('#ln-new-filter').val('');
+    LessNoise.addFilter(newFilter);
+    filters.filters.push(newFilter);
+    localStorage.setItem('ln-filters', JSON.stringify(filters));
+  });
+
+  $('.ln-filter-list').on('click', 'a', function() {
+    var index = filters.filters.indexOf($(this).data('filter'));
+    if (index != -1) {
+      filters.filters.splice(index, 1);
+      localStorage.setItem('ln-filters', JSON.stringify(filters));
+    }
+    $(this).parent().remove();
+  });
+}
+
+LessNoise.addFilter = function(filter) {
+  var filterTemplate = '<div>$$ <a data-filter="$$">delete</a></div>';
+  var filterHTML = filterTemplate.replace(/\$\$/g, filter);
+  $('.ln-filter-list').append(filterHTML);
+}
+
+LessNoise.filterTweet = function(streamItem) {
+  var text = $(streamItem).find('.js-tweet-text').text();
+  var filters = LessNoise.getFilters();
+
+  var result = filters.filters.some(function(filter) {
+    return (text.indexOf(filter) !== -1);
+  });
+
+  if (result) {
+    $(streamItem).addClass('ln-invisible');
+  }
+}
 
 function LessNoise() {
 }
@@ -43,6 +94,7 @@ LessNoise.createStreamItemProcessingFn = function(userName) {
   return function(index, streamItem) {
     LessNoise.expandUrlsOfTweet($(streamItem));
     LessNoise.highlightMentionedUser($(streamItem), userName);
+    LessNoise.filterTweet($(streamItem));
   }
 }
 

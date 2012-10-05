@@ -7,3 +7,7 @@ div.module.wtf-module, div.module.trends, div.module.site-footer, .new-tweets-ba
 .ln-current-user-mentioned {
   background: #FFFAB4;
 }
+
+.ln-invisible {
+  display: none;
+}
