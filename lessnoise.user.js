@@ -6,6 +6,7 @@
 // @include          https://twitter.com/
 // @require          http://code.jquery.com/jquery-1.8.2.min.js
 // @require          filtermodule.js
+// @require          filterstorage.js
 // @resource         css lessnoise.css
 // @resource         filtermodule filtermodule.html
 // ==/UserScript==
@@ -14,53 +15,18 @@ $(document).ready(function() {
   GM_addStyle(GM_getResourceText('css'));
 
   var currentUser = $('.js-mini-current-user').data('screen-name');
-  var streamItemProcessingFn = LessNoise.createStreamItemProcessingFn(currentUser);
+  var filterStorage = FilterStorage();
+  var streamItemProcessingFn = LessNoise.createStreamItemProcessingFn(currentUser, filterStorage.getFilters);
 
-  var filters = LessNoise.getFilters();
-  var filterUI = FilterModule($('.dashboard'), filters.filters);
-  filterUI.onAdd(LessNoise.addFilter);
-  filterUI.onRemove(LessNoise.removeFilter);
+  var filterUI = FilterModule($('.dashboard'), filterStorage.getFilters());
+  filterUI.onAdd(filterStorage.add);
+  filterUI.onRemove(filterStorage.remove);
 
   $('.stream-item').each(streamItemProcessingFn);
 
   LessNoise.setupObserver('.stream-container', LessNoise.clickNewTweetsBar, { childList: true });
   LessNoise.setupObserver('#stream-items-id', LessNoise.createMutationHandlerFn(streamItemProcessingFn), { childList: true });
 });
-
-LessNoise.getFilters = function() {
-  var filters = $.parseJSON(localStorage.getItem('ln-filters')) || { 'filters': [] };
-
-  return filters;
-}
-
-LessNoise.addFilter = function(filter) {
-  var filters = LessNoise.getFilters();
-  filters.filters.push(filter);
-  localStorage.setItem('ln-filters', JSON.stringify(filters));
-}
-
-LessNoise.removeFilter = function(filter) {
-  var filters = LessNoise.getFilters();
-  var index = filters.filters.indexOf(filter);
-
-  if (index != -1) {
-    filters.filters.splice(index, 1);
-    localStorage.setItem('ln-filters', JSON.stringify(filters));
-  }
-}
-
-LessNoise.filterTweet = function(streamItem) {
-  var text = $(streamItem).find('.js-tweet-text').text();
-  var filters = LessNoise.getFilters();
-
-  var result = filters.filters.some(function(filter) {
-    return (text.indexOf(filter) !== -1);
-  });
-
-  if (result) {
-    $(streamItem).addClass('ln-invisible');
-  }
-}
 
 function LessNoise() {
 }
@@ -81,11 +47,11 @@ LessNoise.createMutationHandlerFn = function(streamItemProcessingFn) {
   }
 }
 
-LessNoise.createStreamItemProcessingFn = function(userName) {
+LessNoise.createStreamItemProcessingFn = function(userName, getFiltersFn) {
   return function(index, streamItem) {
     LessNoise.expandUrlsOfTweet($(streamItem));
     LessNoise.highlightMentionedUser($(streamItem), userName);
-    LessNoise.filterTweet($(streamItem));
+    LessNoise.filterTweet($(streamItem), getFiltersFn);
   }
 }
 
@@ -101,6 +67,19 @@ LessNoise.expandUrlsOfTweet = function(streamItem) {
       });
     }
   });
+}
+
+LessNoise.filterTweet = function(streamItem, getFiltersFn) {
+  var text = $(streamItem).find('.js-tweet-text').text();
+  var filters = getFiltersFn();
+
+  var result = filters.some(function(filter) {
+    return (text.indexOf(filter) !== -1);
+  });
+
+  if (result) {
+    $(streamItem).addClass('ln-invisible');
+  }
 }
 
 LessNoise.handleExpandedUrl = function(linkElement, expandedUrl) {
