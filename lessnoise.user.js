@@ -74,7 +74,8 @@ LessNoise.filterTweet = function(streamItem, getFiltersFn) {
   var filters = getFiltersFn();
 
   var result = filters.some(function(filter) {
-    return (text.indexOf(filter) !== -1);
+    var regex = new RegExp(filter, 'i');
+    return (text.search(regex) !== -1);
   });
 
   if (result) {
