@@ -5,6 +5,7 @@
 // @description      LessNoise improves Twitter's UI by hiding sidebar elements, showing expanded URLs, and more
 // @include          https://twitter.com/
 // @require          http://code.jquery.com/jquery-1.8.2.min.js
+// @require          filtermodule.js
 // @resource         css lessnoise.css
 // @resource         filtermodule filtermodule.html
 // ==/UserScript==
@@ -15,12 +16,15 @@ $(document).ready(function() {
   var currentUser = $('.js-mini-current-user').data('screen-name');
   var streamItemProcessingFn = LessNoise.createStreamItemProcessingFn(currentUser);
 
+  var filters = LessNoise.getFilters();
+  var filterUI = FilterModule($('.dashboard'), filters.filters);
+  filterUI.onAdd(LessNoise.addFilter);
+  filterUI.onRemove(LessNoise.removeFilter);
+
   $('.stream-item').each(streamItemProcessingFn);
 
   LessNoise.setupObserver('.stream-container', LessNoise.clickNewTweetsBar, { childList: true });
   LessNoise.setupObserver('#stream-items-id', LessNoise.createMutationHandlerFn(streamItemProcessingFn), { childList: true });
-
-  LessNoise.addFilterModule();
 });
 
 LessNoise.getFilters = function() {
@@ -29,33 +33,20 @@ LessNoise.getFilters = function() {
   return filters;
 }
 
-LessNoise.addFilterModule = function() {
+LessNoise.addFilter = function(filter) {
   var filters = LessNoise.getFilters();
-  $('.dashboard').append(GM_getResourceText('filtermodule'));
-  filters.filters.forEach(LessNoise.addFilter);
-
-  $('#ln-new-filter-btn').click(function() {
-    var newFilter = $('#ln-new-filter').val();
-    $('#ln-new-filter').val('');
-    LessNoise.addFilter(newFilter);
-    filters.filters.push(newFilter);
-    localStorage.setItem('ln-filters', JSON.stringify(filters));
-  });
-
-  $('.ln-filter-list').on('click', 'a', function() {
-    var index = filters.filters.indexOf($(this).data('filter'));
-    if (index != -1) {
-      filters.filters.splice(index, 1);
-      localStorage.setItem('ln-filters', JSON.stringify(filters));
-    }
-    $(this).parent().remove();
-  });
+  filters.filters.push(filter);
+  localStorage.setItem('ln-filters', JSON.stringify(filters));
 }
 
-LessNoise.addFilter = function(filter) {
-  var filterTemplate = '<div>$$ <a data-filter="$$">delete</a></div>';
-  var filterHTML = filterTemplate.replace(/\$\$/g, filter);
-  $('.ln-filter-list').append(filterHTML);
+LessNoise.removeFilter = function(filter) {
+  var filters = LessNoise.getFilters();
+  var index = filters.filters.indexOf(filter);
+
+  if (index != -1) {
+    filters.filters.splice(index, 1);
+    localStorage.setItem('ln-filters', JSON.stringify(filters));
+  }
 }
 
 LessNoise.filterTweet = function(streamItem) {
