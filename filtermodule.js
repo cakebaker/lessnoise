@@ -7,6 +7,10 @@ var FilterModule = function(element, filters) {
 
   $('#ln-new-filter-btn').click(add);
   $('.ln-filter-list').on('click', 'a', remove);
+  // override the default placeholder behavior of FF and hide the placeholder text when focusing the input element
+  // to make it consistent with Twitter's "Compose new Tweet" behavior
+  $('#ln-new-filter').focusin(function() { setPlaceholder(''); });
+  $('#ln-new-filter').focusout(function() { setPlaceholder('Enter new filter'); });
 
   function add() {
     var newFilter = $('#ln-new-filter').val();
@@ -30,6 +34,10 @@ var FilterModule = function(element, filters) {
     removeListeners.forEach(function(fn) { fn(filter); });
 
     return false;
+  }
+
+  function setPlaceholder(text) {
+    $('#ln-new-filter').attr('placeholder', text);
   }
 
   function onAdd(fn) {
