@@ -16,7 +16,7 @@ var FilterModule = function(element, filters) {
   }
 
   function addToList(filter) {
-    var filterTemplate = '<div>$$ <a data-filter="$$">delete</a></div>';
+    var filterTemplate = '<div>$$ <a data-filter="$$" href="#">delete</a></div>';
     var filterHTML = filterTemplate.replace(/\$\$/g, filter);
     $('.ln-filter-module .ln-filter-list').append(filterHTML);
   }
@@ -26,6 +26,8 @@ var FilterModule = function(element, filters) {
     $(this).parent().remove();
 
     removeListeners.forEach(function(fn) { fn(filter); });
+
+    return false;
   }
 
   function onAdd(fn) {
