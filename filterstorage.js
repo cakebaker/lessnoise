@@ -1,6 +1,6 @@
 var FilterStorage = function() {
   var key = 'ln-filters';
-  var filters = $.parseJSON(localStorage.getItem(key)) || [];
+  var filters = JSON.parse(localStorage.getItem(key)) || [];
 
   function add(filter) {
     filters.push(filter);
