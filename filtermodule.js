@@ -13,6 +13,8 @@ var FilterModule = function(element, filters) {
     $('#ln-new-filter').val('');
 
     addListeners.forEach(function(fn) { fn(newFilter); });
+
+    return false;
   }
 
   function addToList(filter) {
