@@ -7,6 +7,7 @@
 // @require          http://code.jquery.com/jquery-1.8.2.min.js
 // @require          filtermodule.js
 // @require          filterstorage.js
+// @require          tweet.js
 // @resource         css lessnoise.css
 // @resource         filtermodule filtermodule.html
 // ==/UserScript==
@@ -47,11 +48,12 @@ LessNoise.createMutationHandlerFn = function(streamItemProcessingFn) {
   }
 }
 
-LessNoise.createStreamItemProcessingFn = function(userName, getFiltersFn) {
+LessNoise.createStreamItemProcessingFn = function(username, getFiltersFn) {
   return function(index, streamItem) {
-    LessNoise.expandUrlsOfTweet($(streamItem));
-    LessNoise.highlightMentionedUser($(streamItem), userName);
-    LessNoise.filterTweet($(streamItem), getFiltersFn);
+    var tweet = Tweet(streamItem);
+    LessNoise.expandUrlsOfTweet($(streamItem)); // TODO should also use the tweet object
+    LessNoise.highlightMentionedUser(tweet, username);
+    LessNoise.filterTweet(tweet, getFiltersFn);
   }
 }
 
@@ -69,17 +71,15 @@ LessNoise.expandUrlsOfTweet = function(streamItem) {
   });
 }
 
-LessNoise.filterTweet = function(streamItem, getFiltersFn) {
-  var text = $(streamItem).find('.js-tweet-text').text();
+LessNoise.filterTweet = function(tweet, getFiltersFn) {
   var filters = getFiltersFn();
-
   var result = filters.some(function(filter) {
     var regex = new RegExp(filter, 'i');
-    return (text.search(regex) !== -1);
+    return (tweet.text.search(regex) !== -1);
   });
 
   if (result) {
-    $(streamItem).addClass('ln-invisible');
+    tweet.hide();
   }
 }
 
@@ -89,13 +89,13 @@ LessNoise.handleExpandedUrl = function(linkElement, expandedUrl) {
   $(linkElement).find('.tco-ellipsis').hide();
 }
 
-LessNoise.highlightMentionedUser = function(streamItem, userName) {
-  var mentions = $(streamItem).find('.tweet').data('mentions');
-  if (mentions !== undefined) {
-    var mentionsArray = mentions.toLowerCase().split(' ');
-    if (mentionsArray.indexOf(userName.toLowerCase()) != -1) {
-      $(streamItem).addClass('ln-current-user-mentioned');
-    }
+LessNoise.highlightMentionedUser = function(tweet, username) {
+  var isUserMentioned = tweet.mentions.some(function(mention) {
+    return (mention.toLowerCase() === username.toLowerCase());
+  });
+
+  if (isUserMentioned) {
+    tweet.highlight();
   }
 }
 
