@@ -23,7 +23,9 @@ $(document).ready(function() {
 
   var filterUI = FilterModule($('.dashboard'), filterStorage.getFilters());
   filterUI.onAdd(filterStorage.add);
+  filterUI.onAdd(filterEngine.add);
   filterUI.onRemove(filterStorage.remove);
+  filterUI.onRemove(filterEngine.remove);
   streamWatcher.onAdd(filterEngine.process);
 
   $('.stream-item').each(function() {

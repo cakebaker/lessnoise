@@ -1,6 +1,32 @@
-var FilterEngine = function(filters) {
+var FilterEngine = function(filtersArray) {
+  var filters = filtersArray.slice(0);
   var currentUser = $('.js-mini-current-user').data('screen-name');
   var filterFns = filters.map(createFilterFn);
+
+  function add(filter) {
+    var filterFn = createFilterFn(filter);
+    filters.push(filter);
+    filterFns.push(filterFn);
+
+    $('.stream-item').not('.ln-invisible').each(function() {
+      process(Tweet($(this)));
+    });
+  }
+
+  function remove(filter) {
+    var index = filters.indexOf(filter);
+    if (index !== -1) {
+      filters.splice(index, 1);
+      filterFns.splice(index, 1);
+
+      $('.stream-item.ln-invisible').each(function() {
+        var tweet = Tweet($(this));
+        if (!filterMatches(tweet)) {
+          tweet.unhide();
+        }
+      });
+    }
+  }
 
   function process(tweet) {
     if (isCurrentUserMentioned(tweet)) {
@@ -46,6 +72,8 @@ var FilterEngine = function(filters) {
   }
 
   return {
-    process: process
+    add: add,
+    process: process,
+    remove: remove
   }
 }
