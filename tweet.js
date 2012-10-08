@@ -10,6 +10,10 @@ var Tweet = function(streamItem) {
     $(streamItem).addClass('ln-invisible');
   }
 
+  function unhide() {
+    $(streamItem).removeClass('ln-invisible');
+  }
+
   function highlight() {
     $(streamItem).addClass('ln-highlight');
   }
@@ -82,6 +86,7 @@ var Tweet = function(streamItem) {
     username: username,
     text: text,
     hide: hide,
+    unhide: unhide,
     highlight: highlight
   }
 }
