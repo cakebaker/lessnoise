@@ -1,4 +1,5 @@
 var Tweet = function(streamItem) {
+  expandUrls();
   var hashtags = parseForHashtags();
   var links = parseForLinks();
   var mentions = parseForMentions();
@@ -11,6 +12,26 @@ var Tweet = function(streamItem) {
 
   function highlight() {
     $(streamItem).addClass('ln-highlight');
+  }
+
+  function expandUrls() {
+    $(streamItem).find('.twitter-timeline-link').each(function() {
+      var urlToExpand = $(this).data('expanded-url');
+      if (urlToExpand !== undefined) {
+        var linkElement = this;
+        GM_xmlhttpRequest({
+          url: urlToExpand,
+          method: "HEAD",
+          onload: function(response) { handleExpandedUrl(linkElement, response.finalUrl); }
+        });
+      }
+    });
+  }
+
+  function handleExpandedUrl(linkElement, expandedUrl) {
+    $(linkElement).attr('href', expandedUrl);
+    $(linkElement).find('.js-display-url').text(expandedUrl);
+    $(linkElement).find('.tco-ellipsis').hide();
   }
 
   function parseForHashtags() {
