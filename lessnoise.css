@@ -11,3 +11,12 @@ div.module.wtf-module, div.module.trends, div.module.site-footer, .new-tweets-ba
 .ln-invisible {
   display: none;
 }
+
+.ln-remove-link {
+  color: rgb(153, 153, 153);
+}
+
+.ln-remove-link:hover {
+  color: rgb(0, 0, 255);
+  text-decoration: none;
+}
