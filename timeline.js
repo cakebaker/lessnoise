@@ -1,4 +1,4 @@
-var StreamWatcher = function() {
+var Timeline = function() {
   var listeners = [];
 
   setupObserver('.stream-container', clickNewTweetsBar);

@@ -9,7 +9,7 @@
 // @require          filterstorage.js
 // @require          filterengine.js
 // @require          tweet.js
-// @require          streamwatcher.js
+// @require          timeline.js
 // @resource         css lessnoise.css
 // @resource         filtermodule filtermodule.html
 // ==/UserScript==
@@ -17,7 +17,7 @@
 $(document).ready(function() {
   GM_addStyle(GM_getResourceText('css'));
 
-  var streamWatcher = StreamWatcher();
+  var timeline = Timeline();
   var filterStorage = FilterStorage();
   var filterEngine = FilterEngine(filterStorage.getFilters());
 
@@ -26,7 +26,7 @@ $(document).ready(function() {
   filterUI.onAdd(filterEngine.add);
   filterUI.onRemove(filterStorage.remove);
   filterUI.onRemove(filterEngine.remove);
-  streamWatcher.onAdd(filterEngine.process);
+  timeline.onAdd(filterEngine.process);
 
   $('.stream-item').each(function() {
     filterEngine.process(Tweet($(this)));
