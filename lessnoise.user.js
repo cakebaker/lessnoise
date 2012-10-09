@@ -31,20 +31,4 @@ $(document).ready(function() {
   $('.stream-item').each(function() {
     filterEngine.process(Tweet($(this)));
   });
-
-  LessNoise.setupObserver('.stream-container', LessNoise.clickNewTweetsBar, { childList: true });
-  LessNoise.setupObserver('#stream-items-id', streamWatcher.watch, { childList: true });
 });
-
-function LessNoise() {
-}
-
-LessNoise.clickNewTweetsBar = function() {
-  $('.new-tweets-bar').click();
-}
-
-LessNoise.setupObserver = function(selector, fn, config) {
-  var target = document.querySelector(selector);
-  var observer = new MutationObserver(fn);
-  observer.observe(target, config);
-}
