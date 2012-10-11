@@ -9,6 +9,7 @@
 // @require          filterstorage.js
 // @require          filterengine.js
 // @require          tweet.js
+// @require          new-tweets-bar-clicker.js
 // @require          timeline.js
 // @resource         css lessnoise.css
 // @resource         filtermodule filtermodule.html
@@ -17,6 +18,7 @@
 $(document).ready(function() {
   GM_addStyle(GM_getResourceText('css'));
 
+  NewTweetsBarClicker();
   var timeline = Timeline();
   var filterStorage = FilterStorage();
   var filterEngine = FilterEngine(filterStorage.getFilters());

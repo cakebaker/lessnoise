@@ -1,18 +1,8 @@
 var Timeline = function() {
   var listeners = [];
-
-  setupObserver('.stream-container', clickNewTweetsBar);
-  setupObserver('#stream-items-id', handleMutations);
-
-  function setupObserver(selector, fn) {
-    var target = document.querySelector(selector);
-    var observer = new MutationObserver(fn);
-    observer.observe(target, { childList: true });
-  }
-
-  function clickNewTweetsBar() {
-    $('.new-tweets-bar').click();
-  }
+  var target = document.querySelector('div#stream-items-id');
+  var observer = new MutationObserver(handleMutations);
+  observer.observe(target, { childList: true });
 
   function handleMutations(mutations) {
     mutations.forEach(function(mutation) {
