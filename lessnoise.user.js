@@ -30,4 +30,7 @@ $(document).ready(function() {
   filterUI.onRemove(filterStorage.remove);
   filterUI.onRemove(filterEngine.remove);
   timeline.onAdd(filterEngine.process);
+  timeline.onFilter(filterStorage.add);
+  timeline.onFilter(filterEngine.add);
+  timeline.onFilter(filterUI.addToList);
 });

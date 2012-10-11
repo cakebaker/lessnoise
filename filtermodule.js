@@ -51,6 +51,7 @@ var FilterModule = function(element, filters) {
   }
 
   return {
+    addToList: addToList,
     onAdd: onAdd,
     onRemove: onRemove
   }

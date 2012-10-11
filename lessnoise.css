@@ -8,7 +8,7 @@ div.module.wtf-module, div.module.trends, div.module.site-footer, .new-tweets-ba
   background: #FFFAB4;
 }
 
-.ln-invisible {
+.ln-invisible, .ln-filter-list-module {
   display: none;
 }
 
