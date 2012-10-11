@@ -29,8 +29,4 @@ $(document).ready(function() {
   filterUI.onRemove(filterStorage.remove);
   filterUI.onRemove(filterEngine.remove);
   timeline.onAdd(filterEngine.process);
-
-  $('.stream-item').each(function() {
-    filterEngine.process(Tweet($(this)));
-  });
 });

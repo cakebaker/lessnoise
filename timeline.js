@@ -20,7 +20,12 @@ var Timeline = function() {
     }
   }
 
+  // Notice: a listener will not only receive an "Add" event for newly added tweets but also for all existing tweets in the timeline.
   function onAdd(listener) {
+    $('div.stream-item').each(function() {
+      listener(Tweet($(this)));
+    });
+
     listeners.push(listener);
   }
 
