@@ -4,6 +4,7 @@
 // @namespace        https://github.com/cakebaker
 // @description      LessNoise improves Twitter's UI by hiding sidebar elements, showing expanded URLs, and more
 // @include          https://twitter.com/
+// @include          https://twitter.com/#
 // @require          http://code.jquery.com/jquery-1.8.2.min.js
 // @require          filtermodule.js
 // @require          filterstorage.js
