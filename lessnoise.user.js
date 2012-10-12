@@ -12,8 +12,8 @@
 // @require          tweet.js
 // @require          new-tweets-bar-clicker.js
 // @require          timeline.js
-// @resource         css lessnoise.css
-// @resource         filtermodule filtermodule.html
+// @resource         css resources/lessnoise.css
+// @resource         filtermodule resources/filtermodule.html
 // ==/UserScript==
 
 $(document).ready(function() {
