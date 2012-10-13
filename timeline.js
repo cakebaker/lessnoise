@@ -63,7 +63,7 @@ var Timeline = function() {
   }
 
   // Notice: a listener will not only receive an "Add" event for newly added tweets but also for all existing tweets in the timeline.
-  function onAdd(listener) {
+  function onTweetAdded(listener) {
     var tweet;
     $('div.stream-item').each(function() {
       tweet = createTweet(this);
@@ -73,12 +73,12 @@ var Timeline = function() {
     listeners.push(listener);
   }
 
-  function onFilter(listener) {
+  function onFilterRuleSelected(listener) {
     filterListeners.push(listener);
   }
 
   return {
-    onAdd: onAdd,
-    onFilter: onFilter
+    onTweetAdded: onTweetAdded,
+    onFilterRuleSelected: onFilterRuleSelected
   }
 }

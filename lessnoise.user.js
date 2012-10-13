@@ -29,8 +29,8 @@ $(document).ready(function() {
   filterUI.onAdd(filterEngine.add);
   filterUI.onRemove(filterStorage.remove);
   filterUI.onRemove(filterEngine.remove);
-  timeline.onAdd(filterEngine.process);
-  timeline.onFilter(filterStorage.add);
-  timeline.onFilter(filterEngine.add);
-  timeline.onFilter(filterUI.addToList);
+  timeline.onTweetAdded(filterEngine.process);
+  timeline.onFilterRuleSelected(filterStorage.add);
+  timeline.onFilterRuleSelected(filterEngine.add);
+  timeline.onFilterRuleSelected(filterUI.addToList);
 });
