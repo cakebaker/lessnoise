@@ -21,10 +21,10 @@ $(document).ready(function() {
 
   NewTweetsBarClicker();
   var timeline = Timeline();
-  var filterStorage = FilterStorage();
-  var filterEngine = FilterEngine(filterStorage.getFilters());
+  var filterStorage = FilterStorage('ln-filters');
+  var filterEngine = FilterEngine(filterStorage.getFilterRules());
 
-  var filterUI = FilterModule($('.dashboard'), filterStorage.getFilters());
+  var filterUI = FilterModule($('.dashboard'), filterStorage.getFilterRules());
   filterUI.onAdd(filterStorage.add);
   filterUI.onAdd(filterEngine.add);
   filterUI.onRemove(filterStorage.remove);

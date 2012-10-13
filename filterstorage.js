@@ -1,32 +1,31 @@
-var FilterStorage = function() {
-  var key = 'ln-filters';
-  var filters = JSON.parse(localStorage.getItem(key)) || [];
+var FilterStorage = function(key) {
+  var filterRules = JSON.parse(localStorage.getItem(key)) || [];
 
-  function add(filter) {
-    filters.push(filter);
+  function add(filterRule) {
+    filterRules.push(filterRule);
     updateLocalStorage();
   }
 
-  function getFilters() {
-    return filters;
+  function getFilterRules() {
+    return filterRules;
   }
 
-  function remove(filter) {
-    var index = filters.indexOf(filter);
+  function remove(filterRule) {
+    var index = filterRules.indexOf(filterRule);
 
     if (index != -1) {
-      filters.splice(index, 1);
+      filterRules.splice(index, 1);
       updateLocalStorage();
     }
   }
 
   function updateLocalStorage() {
-    localStorage.setItem(key, JSON.stringify(filters));
+    localStorage.setItem(key, JSON.stringify(filterRules));
   }
 
   return {
     add: add,
-    getFilters: getFilters,
+    getFilterRules: getFilterRules,
     remove: remove
   }
 }
