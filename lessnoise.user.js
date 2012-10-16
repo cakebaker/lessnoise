@@ -6,14 +6,17 @@
 // @include          https://twitter.com/
 // @include          https://twitter.com/#
 // @require          http://code.jquery.com/jquery-1.8.2.min.js
-// @require          filtermodule.js
 // @require          filterstorage.js
 // @require          filterengine.js
 // @require          tweet.js
 // @require          new-tweets-bar-clicker.js
 // @require          timeline.js
+// @require          filter-rule-module.js
+// @require          new-filter-rule-form.js
+// @require          filter-rule-list.js
 // @resource         css resources/lessnoise.css
-// @resource         filtermodule resources/filtermodule.html
+// @resource         filter-rule-module resources/filter-rule-module.html
+// @resource         single-filter-rule resources/single-filter-rule.html
 // ==/UserScript==
 
 $(document).ready(function() {
@@ -24,13 +27,13 @@ $(document).ready(function() {
   var filterStorage = FilterStorage('ln-filters');
   var filterEngine = FilterEngine(filterStorage.getFilterRules());
 
-  var filterUI = FilterModule($('.dashboard'), filterStorage.getFilterRules());
-  filterUI.onAdd(filterStorage.add);
-  filterUI.onAdd(filterEngine.add);
-  filterUI.onRemove(filterStorage.remove);
-  filterUI.onRemove(filterEngine.remove);
+  var filterRuleModule = FilterRuleModule($('.dashboard'), filterStorage.getFilterRules());
+  filterRuleModule.onFilterRuleAdded(filterStorage.add);
+  filterRuleModule.onFilterRuleAdded(filterEngine.add);
+  filterRuleModule.onFilterRuleRemoved(filterStorage.remove);
+  filterRuleModule.onFilterRuleRemoved(filterEngine.remove);
   timeline.onTweetAdded(filterEngine.process);
   timeline.onFilterRuleSelected(filterStorage.add);
   timeline.onFilterRuleSelected(filterEngine.add);
-  timeline.onFilterRuleSelected(filterUI.addToList);
+  timeline.onFilterRuleSelected(filterRuleModule.addToList);
 });
