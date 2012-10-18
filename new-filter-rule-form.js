@@ -1,30 +1,24 @@
-var NewFilterRuleForm = function(moduleID) {
+var NewFilterRuleForm = function(moduleID, filter) {
   var MODULE = '#' + moduleID;
   var BUTTON = 'input.ln-new-filter-rule-btn';
   var INPUT_FIELD = 'input.ln-new-filter-rule';
   var PLACEHOLDER_TEXT = 'Enter new filter';
-  var listeners = [resetInput];
 
   setPlaceholder(PLACEHOLDER_TEXT);
 
-  $(MODULE).find(BUTTON).click(notifyListeners);
+  $(MODULE).find(BUTTON).click(addFilterRule);
   // override the default placeholder behavior of FF and hide the placeholder text when focusing the input element
   // to make it consistent with Twitter's "Compose new Tweet" behavior
   $(MODULE).find(INPUT_FIELD).focusin(function() { setPlaceholder(''); });
   $(MODULE).find(INPUT_FIELD).focusout(function() { setPlaceholder(PLACEHOLDER_TEXT); });
   
-  function notifyListeners() {
+  function addFilterRule() {
     var newFilterRule = $(MODULE).find(INPUT_FIELD).val();
 
-    listeners.forEach(function(listener) { 
-      listener(newFilterRule);
-    });
+    filter.addFilterRule(newFilterRule);
+    resetInput();
 
     return false;
-  }
-
-  function onSubmit(listener) {
-    listeners.push(listener);
   }
 
   function resetInput() {
@@ -33,9 +27,5 @@ var NewFilterRuleForm = function(moduleID) {
 
   function setPlaceholder(text) {
     $(MODULE).find(INPUT_FIELD).attr('placeholder', text);
-  }
-
-  return {
-    onSubmit: onSubmit
   }
 }

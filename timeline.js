@@ -1,9 +1,50 @@
-var Timeline = function() {
-  var listeners = [];
-  var filterListeners = [];
-  var target = document.querySelector('div#stream-items-id');
-  var observer = new MutationObserver(handleMutations);
-  observer.observe(target, { childList: true });
+// TODO this object needs a refactoring!
+var Timeline = function(currentUser, filter) {
+  filter.onAdd(applySingleFilter);
+  filter.onRemove(refilterFilteredTweets);
+
+  initObserver();
+  $('div.stream-item').each(filterTweet);
+
+  function initObserver() {
+    var target = document.querySelector('div#stream-items-id');
+    var observer = new MutationObserver(handleMutations);
+    observer.observe(target, { childList: true });
+  }
+
+  function filterTweet(index, streamItem) {
+    var tweet = createTweet(streamItem);
+    if (isCurrentUserMentioned(tweet)) {
+      tweet.highlight();
+    } else {
+      var result = filter.filter(tweet);
+      if (result) {
+        tweet.hide();
+      }
+    }
+  }
+
+  function applySingleFilter(filterRule) {
+    var filterFn = filter.getFilter(filterRule);
+
+    $('div.stream-item').not('.ln-invisible').not('.ln-highlight').each(function() {
+      var tweet = Tweet($(this));
+      var result = filterFn(tweet);
+      if (result) {
+        tweet.hide();
+      }
+    });
+  }
+
+  function refilterFilteredTweets() {
+    $('div.stream-item.ln-invisible').each(function() {
+      var tweet = Tweet($(this));
+      var result = filter.filter(tweet);
+      if (!result) {
+        tweet.unhide();
+      }
+    });
+  }
 
   function createTweet(streamItem) {
     var tweet = Tweet(streamItem);
@@ -32,18 +73,16 @@ var Timeline = function() {
   function handleMutations(mutations) {
     mutations.forEach(function(mutation) {
       if (mutation.addedNodes !== null) {
-        notifyListeners(mutation.addedNodes);
+        handleNewTweets(mutation.addedNodes);
       }
     });
   }
 
   function handleFilter() {
-    var filter = $(this).data('filter');
+    var newFilter = $(this).data('filter');
     $(this).parents('div.stream-item-footer').find('div.ln-filter-list-module').toggle();
 
-    filterListeners.forEach(function(listener) {
-      listener(filter);
-    });
+    filter.addFilterRule(newFilter);
 
     return false;
   }
@@ -54,31 +93,15 @@ var Timeline = function() {
     return false;
   }
 
-  function notifyListeners(addedNodes) {
-    var tweet;
+  function handleNewTweets(addedNodes) {
     for (var i = 0; i < addedNodes.length; i++) {
-      tweet = createTweet(addedNodes[i]);
-      listeners.forEach(function(listener) { listener(tweet); });
+      filterTweet(i, addedNodes[i]);
     }
   }
 
-  // Notice: a listener will not only receive an "Add" event for newly added tweets but also for all existing tweets in the timeline.
-  function onTweetAdded(listener) {
-    var tweet;
-    $('div.stream-item').each(function() {
-      tweet = createTweet(this);
-      listener(tweet);
+  function isCurrentUserMentioned(tweet) {
+    return tweet.mentions.some(function(mention) {
+      return (mention === currentUser.toLowerCase());
     });
-
-    listeners.push(listener);
-  }
-
-  function onFilterRuleSelected(listener) {
-    filterListeners.push(listener);
-  }
-
-  return {
-    onTweetAdded: onTweetAdded,
-    onFilterRuleSelected: onFilterRuleSelected
   }
 }
