@@ -29,6 +29,16 @@ $(document).ready(function() {
   NewTweetsBarClicker();
 
   var filter = Filter();
+
+  // TODO: remove this migration script in v0.0.4
+  var oldFilterRules = JSON.parse(localStorage.getItem('ln-filters')) || [];
+  if (oldFilterRules !== []) {
+    oldFilterRules.forEach(function(oldRule) {
+      filter.addFilterRule(oldRule);
+    });
+    localStorage.removeItem('ln-filters');
+  }
+
   Timeline(currentUser, filter);
   FilterRuleModule($('div.dashboard'), filter);
 });
