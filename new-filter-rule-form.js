@@ -11,6 +11,9 @@ var NewFilterRuleForm = function(moduleID, filter) {
   // to make it consistent with Twitter's "Compose new Tweet" behavior
   $(MODULE).find(INPUT_FIELD).focusin(function() { setPlaceholder(''); });
   $(MODULE).find(INPUT_FIELD).focusout(function() { setPlaceholder(PLACEHOLDER_TEXT); });
+  $(MODULE).find(INPUT_FIELD).keyup(function() {
+    $(MODULE).find(BUTTON).attr('disabled', !$(this).val());
+  });
   
   function addFilterRule() {
     var newFilterRule = $(MODULE).find(INPUT_FIELD).val();
