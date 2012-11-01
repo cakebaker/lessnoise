@@ -20,3 +20,8 @@ div.module.wtf-module, div.module.trends, div.module.site-footer, .new-tweets-ba
   color: rgb(0, 0, 255);
   text-decoration: none;
 }
+
+.ln-filter-rule-list {
+  max-height: 300px;
+  overflow-y: auto;
+}
