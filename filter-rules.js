@@ -26,7 +26,7 @@ var FilterRules = function() {
   }
 
   function save(key, rules) {
-    localStorage.setItem(key, JSON.stringify(rules));
+    localStorage.setItem(key, JSON.stringify(rules.sort()));
     notifyListeners(key);
   }
 
