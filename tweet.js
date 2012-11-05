@@ -85,6 +85,7 @@ var Tweet = function(streamItem) {
     mentions: mentions,
     username: username,
     text: text,
+    streamItem: streamItem,
     hide: hide,
     unhide: unhide,
     highlight: highlight

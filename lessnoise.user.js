@@ -9,6 +9,7 @@
 // @require          new-tweets-bar-clicker.js
 // @require          timeline.js
 // @require          tweet.js
+// @require          tweet-filter-rule-menu.js
 // @require          filter.js
 // @require          filter-rules.js
 // @require          filter-rule-module.js
