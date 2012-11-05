@@ -3,14 +3,14 @@ var FilterRuleList = function(moduleID, filter) {
   var FILTER_RULE_LIST = 'div.ln-filter-rule-list';
   var filterRuleTemplate = GM_getResourceText('single-filter-rule');
 
-  filter.onAdd(add);
+  filter.onAdd(function(filterRule) { add(filterRule, 'prepend'); });
   $(MODULE).find(FILTER_RULE_LIST).on('click', 'a', remove);
 
-  filter.getFilterRules().forEach(add);
+  filter.getFilterRules().forEach(function(filterRule) { add(filterRule, 'append'); });
 
-  function add(filterRule) {
+  function add(filterRule, insertionFn) {
     var filterRuleListItem = filterRuleTemplate.replace(/@@/g, filterRule);
-    $(MODULE).find(FILTER_RULE_LIST).append(filterRuleListItem);
+    $(MODULE).find(FILTER_RULE_LIST)[insertionFn](filterRuleListItem);
   }
 
   function remove() { 
