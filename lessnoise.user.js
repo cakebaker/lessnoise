@@ -17,6 +17,8 @@
 // @require          filters/hashtag-filter.js
 // @require          filters/mention-filter.js
 // @require          filters/keyword-filter.js
+// @require          highlighter.js
+// @require          highlighters/current-user-highlighter.js
 // @resource         css resources/lessnoise.css
 // @resource         filter-rule-module resources/filter-rule-module.html
 // @resource         single-filter-rule resources/single-filter-rule.html
@@ -39,6 +41,6 @@ $(document).ready(function() {
     localStorage.removeItem('ln-filters');
   }
 
-  Timeline(currentUser, filter);
+  Timeline(Highlighter(currentUser), filter);
   FilterRuleModule($('div.dashboard'), filter);
 });

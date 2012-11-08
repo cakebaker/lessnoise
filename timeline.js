@@ -1,5 +1,5 @@
 // TODO this object needs a refactoring!
-var Timeline = function(currentUser, filter) {
+var Timeline = function(highlighter, filter) {
   filter.onAdd(applySingleFilter);
   filter.onRemove(refilterFilteredTweets);
 
@@ -14,7 +14,7 @@ var Timeline = function(currentUser, filter) {
 
   function filterTweet(index, streamItem) {
     var tweet = createTweet(streamItem);
-    if (isCurrentUserMentioned(tweet)) {
+    if (highlighter.highlight(tweet)) {
       tweet.highlight();
     } else {
       var result = filter.filter(tweet);
@@ -97,11 +97,5 @@ var Timeline = function(currentUser, filter) {
     for (var i = 0; i < addedNodes.length; i++) {
       filterTweet(i, addedNodes[i]);
     }
-  }
-
-  function isCurrentUserMentioned(tweet) {
-    return tweet.mentions.some(function(mention) {
-      return (mention === currentUser.toLowerCase());
-    });
   }
 }
