@@ -20,6 +20,11 @@ LessNoise is a [Greasemonkey](http://www.greasespot.net/) script to improve some
 
 ## Changelog
 
+### v0.0.4 (2012-11-10)
+
+* Ordering filters alphabetically
+* Bugfix: Filtering expanded urls
+
 ### v0.0.3 (2012-10-19)
 
 * Adding filter link to each tweet
