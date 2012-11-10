@@ -8,6 +8,7 @@
 // @require          http://code.jquery.com/jquery-1.8.2.min.js
 // @require          new-tweets-bar-clicker.js
 // @require          timeline.js
+// @require          url-expander.js
 // @require          tweet.js
 // @require          tweet-filter-rule-menu.js
 // @require          filter.js

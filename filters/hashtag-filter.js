@@ -10,7 +10,7 @@ var HashtagFilter = function(filterRulesStorage) {
   }
 
   function filter(tweet) {
-    return tweet.hashtags.some(function(hashtag) {
+    return tweet.hashtags().some(function(hashtag) {
       var wantedHashtag = '#' + hashtag.toLowerCase();
       return (hashtags.indexOf(wantedHashtag) !== -1);
     });

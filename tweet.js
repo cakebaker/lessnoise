@@ -1,10 +1,5 @@
 var Tweet = function(streamItem) {
-  expandUrls();
-  var hashtags = parseForHashtags();
-  var links = parseForLinks();
-  var mentions = parseForMentions();
-  var username = parseForUsername();
-  var text = parseForText();
+  var cache = {};
 
   function hide() {
     $(streamItem).addClass('ln-invisible');
@@ -18,27 +13,23 @@ var Tweet = function(streamItem) {
     $(streamItem).addClass('ln-highlight');
   }
 
-  function expandUrls() {
-    $(streamItem).find('.twitter-timeline-link').each(function() {
-      var urlToExpand = $(this).data('expanded-url');
-      if (urlToExpand !== undefined) {
-        var linkElement = this;
-        GM_xmlhttpRequest({
-          url: urlToExpand,
-          method: "HEAD",
-          onload: function(response) { handleExpandedUrl(linkElement, response.finalUrl); }
-        });
-      }
-    });
+  function id() {
+    if (!cache.id) {
+      cache.id = $(streamItem).data('item-id');
+    }
+
+    return cache.id;
   }
 
-  function handleExpandedUrl(linkElement, expandedUrl) {
-    $(linkElement).attr('href', expandedUrl);
-    $(linkElement).find('.js-display-url').text(expandedUrl);
-    $(linkElement).find('.tco-ellipsis').hide();
+  function hashtags() {
+    if (!cache.hashtags) {
+      cache.hashtags = getHashtags();
+    }
+
+    return cache.hashtags;
   }
 
-  function parseForHashtags() {
+  function getHashtags() {
     var result = [];
 
     $(streamItem).find('.twitter-hashtag b').each(function() {
@@ -48,7 +39,38 @@ var Tweet = function(streamItem) {
     return result;
   }
 
-  function parseForLinks() {
+  function mentions() {
+    if (!cache.mentions) {
+      cache.mentions = getMentions();
+    }
+
+    return cache.mentions;
+  }
+
+  function getMentions() {
+    var mentionsString = $(streamItem).find('.tweet').data('mentions');
+    if (mentionsString !== undefined) {
+      return mentionsString.split(' ');
+    }
+
+    return [];
+  }
+
+  function links() {
+    if (cache.links) {
+      return cache.links;
+    }
+
+    var links = getLinks();
+
+    if (links.length === 0) {
+      cache.links = links;
+    }
+
+    return links;
+  }
+
+  function getLinks() {
     var result = [];
 
     $(streamItem).find('.twitter-timeline-link').each(function() {
@@ -62,30 +84,16 @@ var Tweet = function(streamItem) {
     return result;
   }
 
-  function parseForMentions() {
-    var mentionsString = $(streamItem).find('.tweet').data('mentions');
-    if (mentionsString !== undefined) {
-      return mentionsString.split(' ');
-    }
-
-    return [];
-  }
-
-  function parseForUsername() {
-    return $(streamItem).find('.username b').text();
-  }
-
-  function parseForText() {
+  function text() {
     return $.trim($(streamItem).find('.js-tweet-text').text());
   }
 
   return {
+    id: id,
     hashtags: hashtags,
-    links: links,
     mentions: mentions,
-    username: username,
+    links: links,
     text: text,
-    streamItem: streamItem,
     hide: hide,
     unhide: unhide,
     highlight: highlight

@@ -10,7 +10,7 @@ var MentionFilter = function(filterRulesStorage) {
   }
 
   function filter(tweet) {
-    return tweet.mentions.some(function(mention) {
+    return tweet.mentions().some(function(mention) {
       var wantedMention = '@' + mention.toLowerCase();
       return (mentions.indexOf(wantedMention) !== -1);
     });

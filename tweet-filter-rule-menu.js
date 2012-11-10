@@ -1,10 +1,10 @@
 var TweetFilterRuleMenu = function(tweet, filter) {
-  var streamItem = tweet.streamItem;
+  var tweetSelector = 'div#stream-item-tweet-' + tweet.id();
 
-  $(streamItem).find('ul.tweet-actions')
-               .prepend('<li class="ln-action-filter"><a title="Filter" href="#"><b>Filter</b></a></li>')
-               .find('li.ln-action-filter a')
-               .click(toggleFilterRuleMenu);
+  $(tweetSelector).find('ul.tweet-actions')
+                  .prepend('<li class="ln-action-filter"><a title="Filter" href="#"><b>Filter</b></a></li>')
+                  .find('li.ln-action-filter a')
+                  .click(toggleFilterRuleMenu);
 
   function toggleFilterRuleMenu() {
     var filterRuleMenu = $(this).parents('div.stream-item-footer').find('div.ln-filter-list-module');
@@ -19,18 +19,18 @@ var TweetFilterRuleMenu = function(tweet, filter) {
   }
 
   function createFilterRuleMenu() {
-    $(streamItem).find('div.stream-item-footer').append('<div class="ln-filter-list-module"><ul class="ln-filter-list"></ul></div>');
-    $(streamItem).find('ul.ln-filter-list').append(createFilterRuleList());
-    $(streamItem).find('ul.ln-filter-list').on('click', 'a', addFilterRule);
-    $(streamItem).find('div.ln-filter-list-module').toggle();
+    $(tweetSelector).find('div.stream-item-footer').append('<div class="ln-filter-list-module"><ul class="ln-filter-list"></ul></div>');
+    $(tweetSelector).find('ul.ln-filter-list').append(createFilterRuleList());
+    $(tweetSelector).find('ul.ln-filter-list').on('click', 'a', addFilterRule);
+    $(tweetSelector).find('div.ln-filter-list-module').toggle();
   }
 
   function createFilterRuleList() {
     var filterRuleList = '';
-    tweet.hashtags.forEach(function(hashtag) {
+    tweet.hashtags().forEach(function(hashtag) {
       filterRuleList += '<li><a href="#" data-filter="#' + hashtag + '">#' + hashtag + '</a></li>';
     });
-    tweet.mentions.forEach(function(mention) {
+    tweet.mentions().forEach(function(mention) {
       filterRuleList += '<li><a href="#" data-filter="@' + mention + '">@' + mention + '</a></li>';
     });
 

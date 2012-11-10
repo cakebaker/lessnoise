@@ -27,6 +27,10 @@ var Timeline = function(highlighter, filter) {
 
   function processTweet(streamItem) {
     var tweet = Tweet(streamItem);
+    if (tweet.links().length > 0) {
+      var expander = UrlExpander(tweet);
+      expander.onAllUrlsExpanded(filterTweet);
+    }
     TweetFilterRuleMenu(tweet, filter);
     filterTweet(tweet);
   }
