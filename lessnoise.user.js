@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name             LessNoise
-// @version          0.0.3
+// @version          0.0.4
 // @namespace        https://github.com/cakebaker
 // @description      LessNoise improves Twitter's UI by hiding sidebar elements, showing expanded URLs, and more
 // @include          https://twitter.com/
@@ -33,16 +33,6 @@ $(document).ready(function() {
   NewTweetsBarClicker();
 
   var filter = Filter();
-
-  // TODO: remove this migration script in v0.0.4
-  var oldFilterRules = JSON.parse(localStorage.getItem('ln-filters')) || [];
-  if (oldFilterRules !== []) {
-    oldFilterRules.forEach(function(oldRule) {
-      filter.addFilterRule(oldRule);
-    });
-    localStorage.removeItem('ln-filters');
-  }
-
   Timeline(Highlighter(currentUser), filter);
   FilterRuleModule($('div.dashboard'), filter);
 });
