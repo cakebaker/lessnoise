@@ -27,11 +27,17 @@ var TweetFilterRuleMenu = function(tweet, filter) {
 
   function createFilterRuleList() {
     var filterRuleList = '';
+    var listItemTemplate = '<li><a href="#" data-filter="@@">@@</a></li>';
+
     tweet.hashtags().forEach(function(hashtag) {
-      filterRuleList += '<li><a href="#" data-filter="#' + hashtag + '">#' + hashtag + '</a></li>';
+      filterRuleList += listItemTemplate.replace(/@@/g, '#' + hashtag);
     });
     tweet.mentions().forEach(function(mention) {
-      filterRuleList += '<li><a href="#" data-filter="@' + mention + '">@' + mention + '</a></li>';
+      filterRuleList += listItemTemplate.replace(/@@/g, '@' + mention);
+    });
+    tweet.links().forEach(function(link) {
+      var domain = link.replace(/https?:\/\/(www\.)?/, '').replace(/\/.*/, '');
+      filterRuleList += listItemTemplate.replace(/@@/g, domain);
     });
 
     return filterRuleList;
