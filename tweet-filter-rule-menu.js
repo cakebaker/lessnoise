@@ -27,7 +27,7 @@ var TweetFilterRuleMenu = function(tweet, filter) {
 
   function createFilterRuleList() {
     var filterRuleList = '';
-    var listItemTemplate = '<li><a href="#" data-filter="@@">@@</a></li>';
+    var listItemTemplate = '<li><a href="#" data-filter-rule="@@">@@</a></li>';
 
     tweet.hashtags().forEach(function(hashtag) {
       filterRuleList += listItemTemplate.replace(/@@/g, '#' + hashtag);
@@ -46,7 +46,7 @@ var TweetFilterRuleMenu = function(tweet, filter) {
   function addFilterRule() {
     $(this).parents('div.stream-item-footer').find('div.ln-filter-list-module').toggle();
 
-    var newFilterRule = $(this).data('filter');
+    var newFilterRule = $(this).data('filter-rule');
     filter.addFilterRule(newFilterRule);
 
     return false;
