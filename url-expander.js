@@ -14,11 +14,40 @@ var UrlExpander = function(tweet) {
       GM_xmlhttpRequest({
         url: urlToExpand,
         method: "HEAD",
-        onload: function(response) { handleExpandedUrl(linkElement, response.finalUrl); }
+        onload: function(response) { handleExpandedUrl(linkElement, processUrl(response.finalUrl)); }
       });
     } else {
       urlsToExpandCount--;
     }
+  }
+
+  function processUrl(url) {
+    var urlElement = document.createElement('a');
+    urlElement.href = url;
+
+    if (urlElement.search !== '') {
+      urlElement.search = cleanupQuerystring(urlElement.search);
+    }
+
+    return urlElement.href;
+  }
+
+  function cleanupQuerystring(querystring) {
+    var unwantedKeys = ['utm_content', 'utm_source', 'utm_medium', 'utm_campaign'];
+    var cleanParams = [];
+    var params = querystring.substring(1).split('&');
+
+    params.forEach(function(param) {
+      var containsUnwantedKey = unwantedKeys.some(function(unwantedKey) {
+        return (param.indexOf(unwantedKey) > -1)
+      });
+
+      if (!containsUnwantedKey) {
+        cleanParams.push(param);
+      }
+    });
+
+    return '?' + cleanParams.join('&');
   }
 
   function handleExpandedUrl(linkElement, expandedUrl) {
