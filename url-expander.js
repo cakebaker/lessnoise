@@ -52,6 +52,7 @@ var UrlExpander = function(tweet) {
 
   function handleExpandedUrl(linkElement, expandedUrl) {
     expandedUrlsCount++;
+    $(linkElement).data('expanded-url', expandedUrl);
     $(linkElement).attr('href', expandedUrl);
     $(linkElement).attr('title', expandedUrl);
     $(linkElement).find('.js-display-url').text(expandedUrl);
