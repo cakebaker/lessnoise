@@ -20,6 +20,11 @@ LessNoise is a [Greasemonkey](http://www.greasespot.net/) script to improve some
 
 ## Changelog
 
+### v0.0.5 (2012-11-13)
+
+* Showing urls mentioned in tweets in the filter menu
+* Cleaning up querystring of expanded urls (i.e. removing params with keys "utm_source", "utm_content", "utm_medium", or "utm_campaign")
+
 ### v0.0.4 (2012-11-10)
 
 * Ordering filters alphabetically
