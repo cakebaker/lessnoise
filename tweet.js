@@ -50,7 +50,7 @@ var Tweet = function(streamItem) {
   function getMentions() {
     var mentionsString = $(streamItem).find('.tweet').data('mentions');
     if (mentionsString !== undefined) {
-      return mentionsString.split(' ');
+      return mentionsString.toString().split(' ');
     }
 
     return [];
