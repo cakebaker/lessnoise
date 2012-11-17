@@ -5,9 +5,12 @@ var FilterRules = function() {
 
   function add(key, filterRule) {
     var filterRules = get(key);
-    filterRules.push(filterRule);
-    save(key, filterRules);
-    notifyAddListeners(filterRule);
+
+    if (filterRules.indexOf(filterRule) === -1) {
+      filterRules.push(filterRule);
+      save(key, filterRules);
+      notifyAddListeners(filterRule);
+    }
   }
 
   function remove(key, filterRule) {
