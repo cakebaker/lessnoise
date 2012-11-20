@@ -1,6 +1,6 @@
 var FilterRuleList = function(moduleID, filter) {
   var MODULE = '#' + moduleID;
-  var FILTER_RULE_LIST = 'div.ln-filter-rule-list';
+  var FILTER_RULE_LIST = 'ul.ln-filter-rule-list';
   var filterRuleTemplate = GM_getResourceText('single-filter-rule');
 
   filter.onAdd(function(filterRule) { add(filterRule, 'prepend'); });
