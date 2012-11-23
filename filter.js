@@ -3,25 +3,21 @@ var Filter = function() {
   var filters = [HashtagFilter(filterRules), MentionFilter(filterRules), KeywordFilter(filterRules)];
 
   function addFilterRule(filterRule) {
-    var key;
-    for (var i = 0; i < filters.length; i++) {
-      if (filters[i].accept(filterRule)) {
-        key = filters[i].FILTER_RULES_KEY;
-        break;
-      }
-    }
+    var key = getFilterRulesKey(filterRule);
     filterRules.add(key, filterRule.toLowerCase());
   }
 
   function removeFilterRule(filterRule) {
-    var key;
+    var key = getFilterRulesKey(filterRule);
+    filterRules.remove(key, filterRule);
+  }
+
+  function getFilterRulesKey(filterRule) {
     for (var i = 0; i < filters.length; i++) {
       if (filters[i].accept(filterRule)) {
-        key = filters[i].FILTER_RULES_KEY;
-        break;
+        return filters[i].FILTER_RULES_KEY;
       }
     }
-    filterRules.remove(key, filterRule);
   }
 
   function filter(tweet) {
