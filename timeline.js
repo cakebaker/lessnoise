@@ -32,14 +32,21 @@ var Timeline = function(highlighter, filter) {
       expander.onAllUrlsExpanded(filterTweet);
     }
     TweetFilterRuleMenu(tweet, filter);
+    highlightTweet(tweet);
     filterTweet(tweet);
   }
 
-  function filterTweet(tweet) {
+  function highlightTweet(tweet) {
     if (highlighter.highlight(tweet)) {
       tweet.highlight();
-    } else if (filter.filter(tweet)) {
-      tweet.hide();
+    }
+  }
+
+  function filterTweet(tweet) {
+    if (!tweet.isHighlighted() && !tweet.isHidden()) {
+      if (filter.filter(tweet)) {
+        tweet.hide();
+      }
     }
   }
 
