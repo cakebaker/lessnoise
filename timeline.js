@@ -2,7 +2,7 @@ var Timeline = function(highlighter, filter) {
   filter.onAdd(filterTweetsWithSingleFilter);
   filter.onRemove(refilterFilteredTweets);
 
-  $('div.stream-item').each(function() { processTweet(this) });
+  $('div.stream-item').each(function() { processTweet(Tweet(this)) });
 
   // watching for new tweets
   (function() {
@@ -20,13 +20,12 @@ var Timeline = function(highlighter, filter) {
 
     function handleNewTweets(addedNodes) {
       for (var i = 0; i < addedNodes.length; i++) {
-        processTweet(addedNodes[i]);
+        processTweet(Tweet(addedNodes[i]));
       }
     }
   })();
 
-  function processTweet(streamItem) {
-    var tweet = Tweet(streamItem);
+  function processTweet(tweet) {
     if (tweet.links().length > 0) {
       var expander = UrlExpander(tweet);
       expander.onAllUrlsExpanded(filterTweet);
