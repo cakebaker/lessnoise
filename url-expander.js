@@ -33,7 +33,7 @@ var UrlExpander = function(tweet) {
   }
 
   function cleanupQuerystring(querystring) {
-    var unwantedKeys = ['utm_content', 'utm_source', 'utm_medium', 'utm_campaign'];
+    var unwantedKeys = ['buffer_share', 'utm_content', 'utm_source', 'utm_medium', 'utm_campaign'];
     var cleanParams = [];
     var params = querystring.substring(1).split('&');
 
