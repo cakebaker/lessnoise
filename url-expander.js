@@ -47,7 +47,7 @@ var UrlExpander = function(tweet) {
       }
     });
 
-    return '?' + cleanParams.join('&');
+    return (cleanParams.length > 0) ? '?' + cleanParams.join('&') : '';
   }
 
   function handleExpandedUrl(linkElement, expandedUrl) {
