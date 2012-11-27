@@ -10,7 +10,7 @@ var Tweet = function(streamItem) {
   }
 
   function isHidden() {
-    $(streamItem).hasClass('ln-invisible');
+    return $(streamItem).hasClass('ln-invisible');
   }
 
   function highlight() {
@@ -18,7 +18,7 @@ var Tweet = function(streamItem) {
   }
 
   function isHighlighted() {
-    $(streamItem).hasClass('ln-highlight');
+    return $(streamItem).hasClass('ln-highlight');
   }
 
   function id() {
