@@ -1,4 +1,5 @@
 var Timeline = function(highlighter, filter) {
+  var tweetCounter = TitleTweetCounter();
   filter.onAdd(filterTweetsWithSingleFilter);
   filter.onRemove(refilterFilteredTweets);
 
@@ -26,18 +27,29 @@ var Timeline = function(highlighter, filter) {
   })();
 
   function processTweet(tweet) {
-    if (tweet.links().length > 0) {
-      var expander = UrlExpander(tweet);
-      expander.onAllUrlsExpanded(filterTweet);
-    }
+    var filterFn = (tweet.hasLinks()) ? filterTweet : filterAndCountTweet;
+
     TweetFilterRuleMenu(tweet, filter);
     highlightTweet(tweet);
-    filterTweet(tweet);
+    filterFn(tweet);
+
+    if (tweet.hasLinks()) {
+      var expander = UrlExpander(tweet);
+      expander.onAllUrlsExpanded(filterAndCountTweet);
+    }
   }
 
   function highlightTweet(tweet) {
     if (highlighter.highlight(tweet)) {
       tweet.highlight();
+    }
+  }
+
+  function filterAndCountTweet(tweet) {
+    filterTweet(tweet);
+
+    if (!tweet.isHidden()) {
+      tweetCounter.inc();
     }
   }
 

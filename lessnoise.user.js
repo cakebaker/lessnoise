@@ -9,6 +9,7 @@
 // @require          new-tweets-bar-clicker.js
 // @require          timeline.js
 // @require          url-expander.js
+// @require          title-tweet-counter.js
 // @require          tweet.js
 // @require          tweet-filter-rule-menu.js
 // @require          filter.js

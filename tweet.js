@@ -92,6 +92,10 @@ var Tweet = function(streamItem) {
     return result;
   }
 
+  function hasLinks() {
+    return (links().length > 0);
+  }
+
   function text() {
     return $.trim($(streamItem).find('.js-tweet-text').text());
   }
@@ -101,6 +105,7 @@ var Tweet = function(streamItem) {
     hashtags: hashtags,
     mentions: mentions,
     links: links,
+    hasLinks: hasLinks,
     text: text,
     hide: hide,
     unhide: unhide,
