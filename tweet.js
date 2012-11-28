@@ -1,24 +1,26 @@
 var Tweet = function(streamItem) {
+  var INVISIBLE = 'ln-invisible';
+  var HIGHLIGHTED = 'ln-highlight';
   var cache = {};
 
   function hide() {
-    $(streamItem).addClass('ln-invisible');
+    $(streamItem).addClass(INVISIBLE);
   }
 
   function unhide() {
-    $(streamItem).removeClass('ln-invisible');
+    $(streamItem).removeClass(INVISIBLE);
   }
 
   function isHidden() {
-    return $(streamItem).hasClass('ln-invisible');
+    return $(streamItem).hasClass(INVISIBLE);
   }
 
   function highlight() {
-    $(streamItem).addClass('ln-highlight');
+    $(streamItem).addClass(HIGHLIGHTED);
   }
 
   function isHighlighted() {
-    return $(streamItem).hasClass('ln-highlight');
+    return $(streamItem).hasClass(HIGHLIGHTED);
   }
 
   function id() {
