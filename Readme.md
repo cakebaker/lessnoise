@@ -13,10 +13,13 @@ LessNoise is a [Greasemonkey](http://www.greasespot.net/) script to improve some
 * highlight tweets that mention the logged-in user
 * filter tweets
 
-## Installation
+## Requirements
+* [Firefox](http://www.mozilla.org/en-US/firefox/new/) (support for [Chrome](http://www.chromium.org/) is planned)
+* Make sure you have the [Greasemonkey](http://www.greasespot.net/) add-on installed (see Tools/Add-ons in Firefox)
 
-* Make sure you have [Greasemonkey](http://www.greasespot.net/) installed (see Tools/Add-ons in Firefox)
+## Installation
 * Install LessNoise by visiting [https://github.com/cakebaker/lessnoise/raw/master/lessnoise.user.js](https://github.com/cakebaker/lessnoise/raw/master/lessnoise.user.js).
+* You can also download the latest release from [https://github.com/cakebaker/lessnoise/tags](https://github.com/cakebaker/lessnoise/tags), unpack it, and install by calling file:///path-to-where-you-have-unpacked-lessnoise/lessnoise.user.js in your browser
 
 ## Changelog
 
