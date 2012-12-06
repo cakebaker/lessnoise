@@ -19,9 +19,15 @@ LessNoise is a [Greasemonkey](http://www.greasespot.net/) script to improve some
 
 ## Installation
 * Install LessNoise by visiting [https://github.com/cakebaker/lessnoise/raw/master/lessnoise.user.js](https://github.com/cakebaker/lessnoise/raw/master/lessnoise.user.js).
-* You can also download the latest release from [https://github.com/cakebaker/lessnoise/tags](https://github.com/cakebaker/lessnoise/tags), unpack it, and install by calling file:///path-to-where-you-have-unpacked-lessnoise/lessnoise.user.js in your browser
+* You can also download the latest release from [https://github.com/cakebaker/lessnoise/tags](https://github.com/cakebaker/lessnoise/tags), unpack it, and install it by calling file:///path-to-where-you-have-unpacked-lessnoise/lessnoise.user.js in your browser
 
 ## Changelog
+
+### v0.0.6 (2012-12-06)
+
+* Hiding filter list by default
+* Showing the number of new tweets in the title if the window is not focused
+* Bugfix: Fixing type error if a tweet contains a "@" followed by a number
 
 ### v0.0.5 (2012-11-13)
 
