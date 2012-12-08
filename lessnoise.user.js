@@ -5,7 +5,7 @@
 // @description      LessNoise improves Twitter's UI by hiding sidebar elements, showing expanded URLs, and more
 // @include          https://twitter.com/
 // @include          https://twitter.com/#
-// @require          http://code.jquery.com/jquery-1.8.3.min.js
+// @require          lib/jquery-1.8.3.min.js
 // @require          new-tweets-bar-clicker.js
 // @require          timeline.js
 // @require          url-expander.js
