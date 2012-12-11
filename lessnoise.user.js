@@ -23,8 +23,6 @@
 // @require          highlighter.js
 // @require          highlighters/current-user-highlighter.js
 // @resource         css resources/lessnoise.css
-// @resource         filter-rule-module resources/filter-rule-module.html
-// @resource         single-filter-rule resources/single-filter-rule.html
 // ==/UserScript==
 
 $(document).ready(function() {

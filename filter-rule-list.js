@@ -1,7 +1,11 @@
 var FilterRuleList = function(moduleID, filter) {
   var MODULE = '#' + moduleID;
   var FILTER_RULE_LIST = 'ul.ln-filter-rule-list';
-  var filterRuleTemplate = GM_getResourceText('single-filter-rule');
+  var filterRuleTemplate = '<li class="ln-filter-rule-list-item">@@ ' +
+                           '  <a class="ln-remove-link" data-filter-rule="@@" href="#" title="remove this filter">' +
+                           '    <strong>x</strong>' +
+                           '  </a>' +
+                           '</li>';
 
   filter.onAdd(function(filterRule) { add(filterRule, 'prepend'); });
   $(MODULE).find(FILTER_RULE_LIST).on('click', 'a', remove);

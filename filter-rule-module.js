@@ -26,10 +26,29 @@ var FilterRuleModule = function(parentElement, filter) {
   }
 
   function createFilterRuleModule() {
-    var module = GM_getResourceText('filter-rule-module').replace('@@', moduleID);
+    var module = getTemplate().replace('@@', moduleID);
     parentElement.append(module);
 
     NewFilterRuleForm(moduleID, filter);
     FilterRuleList(moduleID, filter);
+  }
+
+  function getTemplate() {
+    return '<div class="module ln-filter-rule-module" id="@@">' +
+           '  <div class="flex-module">' +
+           '    <div class="flex-module-inner">' +
+           '      <div>' +
+           '        <form>' +
+           '          <input type="text" class="ln-new-filter-rule" placeholder="" />' +
+           '          <input class="ln-new-filter-rule-btn" type="submit" value="Add" disabled="disabled" />' +
+           '        </form>' +
+           '      </div>' +
+           '      <div class="flex-module-header">' +
+           '      </div>' +
+           '      <ul class="content ln-filter-rule-list">' +
+           '      </ul>' +
+           '    </div>' +
+           '  </div>' +
+           '</div>';
   }
 }
