@@ -7,7 +7,7 @@
   "content_scripts": [{
     "js": ["lib/jquery-1.8.3.min.js", 
            "lessnoise-for-chrome.user.js"],
-    "css": ["resources/lessnoise.css"],
+    "css": ["css/lessnoise.css"],
     "matches": ["https://twitter.com/", "https://twitter.com/#"]
   }],
   "permissions": ["http://*/", "https://*/"]

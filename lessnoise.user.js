@@ -22,7 +22,7 @@
 // @require          filters/keyword-filter.js
 // @require          highlighter.js
 // @require          highlighters/current-user-highlighter.js
-// @resource         css resources/lessnoise.css
+// @resource         css css/lessnoise.css
 // ==/UserScript==
 
 $(document).ready(function() {
