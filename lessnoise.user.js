@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name             LessNoise
-// @version          0.0.6
+// @version          0.0.7
 // @namespace        https://github.com/cakebaker
 // @description      LessNoise improves Twitter's UI by hiding sidebar elements, showing expanded URLs, and more
 // @include          https://twitter.com/

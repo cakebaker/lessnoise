@@ -33,6 +33,10 @@ LessNoise is a [Greasemonkey](http://www.greasespot.net/) script to improve some
 
 ## Changelog
 
+### v0.0.7 (2012-12-15)
+
+* Support for Chrome
+
 ### v0.0.6 (2012-12-06)
 
 * Hiding filter list by default
