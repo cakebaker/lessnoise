@@ -14,12 +14,22 @@ LessNoise is a [Greasemonkey](http://www.greasespot.net/) script to improve some
 * filter tweets
 
 ## Requirements
-* [Firefox](http://www.mozilla.org/en-US/firefox/new/) (support for [Chrome](http://www.chromium.org/) is planned)
-* Make sure you have the [Greasemonkey](http://www.greasespot.net/) add-on installed (see Tools/Add-ons in Firefox)
+
+* [Firefox](http://www.mozilla.org/en-US/firefox/new/) with the [Greasemonkey](http://www.greasespot.net/) add-on installed (check Tools/Add-ons to see whether Greasemonkey is installed)
+* or [Chrome](http://www.chromium.org/)
 
 ## Installation
+
+### Firefox
+
 * Install LessNoise by visiting [https://github.com/cakebaker/lessnoise/raw/master/lessnoise.user.js](https://github.com/cakebaker/lessnoise/raw/master/lessnoise.user.js).
 * You can also download the latest release from [https://github.com/cakebaker/lessnoise/tags](https://github.com/cakebaker/lessnoise/tags), unpack it, and install it by calling file:///path-to-where-you-have-unpacked-lessnoise/lessnoise.user.js in your browser
+
+### Chrome
+
+* Download the following file: [http://code.42dh.com/lessnoise/lessnoise.crx](http://code.42dh.com/lessnoise/lessnoise.crx)
+* Open Chrome's extensions tab (Tools/Extensions)
+* Drag and drop the downloaded file to the extensions tab
 
 ## Changelog
 
