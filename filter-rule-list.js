@@ -2,7 +2,7 @@ var FilterRuleList = function(moduleID, filter) {
   var MODULE = '#' + moduleID;
   var FILTER_RULE_LIST = 'ul.ln-filter-rule-list';
   var filterRuleTemplate = '<li class="ln-filter-rule-list-item">@@ ' +
-                           '  <a class="ln-remove-link" data-filter-rule="@@" href="#" title="remove this filter">' +
+                           '  <a class="ln-remove-link" data-filter-rule="@@" href="#" title="remove filter: @@">' +
                            '    <strong>x</strong>' +
                            '  </a>' +
                            '</li>';
