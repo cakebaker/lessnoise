@@ -4,7 +4,7 @@ div.module.wtf-module, div.module.trends, div.module.site-footer, .new-tweets-ba
 
 /* LessNoise-specific classes, prefixed with "ln" */
 
-.ln-highlight {
+.ln-highlighted {
   background: #FFFAB4;
 }
 

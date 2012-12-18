@@ -1,6 +1,6 @@
 var Tweet = function(streamItem) {
   var INVISIBLE = 'ln-invisible';
-  var HIGHLIGHTED = 'ln-highlight';
+  var HIGHLIGHTED = 'ln-highlighted';
   var cache = {};
 
   function hide() {
