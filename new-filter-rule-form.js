@@ -1,5 +1,5 @@
-var NewFilterRuleForm = function(moduleID, filter) {
-  var MODULE = '#' + moduleID;
+var NewFilterRuleForm = function(parentClass, filter) {
+  var MODULE = '.' + parentClass;
   var BUTTON = 'input.ln-new-filter-rule-btn';
   var INPUT_FIELD = 'input.ln-new-filter-rule';
   var PLACEHOLDER_TEXT = 'Enter new filter';

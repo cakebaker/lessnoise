@@ -14,7 +14,7 @@
 // @require          tweet-filter-rule-menu.js
 // @require          filter.js
 // @require          filter-rules.js
-// @require          filter-rule-module.js
+// @require          sidebar.js
 // @require          new-filter-rule-form.js
 // @require          filter-rule-list.js
 // @require          filters/hashtag-filter.js
@@ -38,5 +38,5 @@ $(document).ready(function() {
 
   var filter = Filter();
   Timeline(Highlighter(currentUser), filter);
-  FilterRuleModule($('div.dashboard'), filter);
+  Sidebar($('div.dashboard'), filter);
 });

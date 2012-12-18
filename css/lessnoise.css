@@ -39,17 +39,17 @@ div.module.wtf-module, div.module.trends, div.module.site-footer, .new-tweets-ba
   color: rgb(51, 51, 51);
 }
 
-.ln-toggle-filter-rule-module-link {
+.ln-toggle-sidebar-link {
   text-align: center;
 }
 
-.ln-toggle-filter-rule-module-link a {
+.ln-toggle-sidebar-link a {
   color: rgb(51, 51, 51);
   text-decoration: none;
   font-weight: bold;
   padding: 1em;
 }
 
-.ln-toggle-filter-rule-module-link a:hover {
+.ln-toggle-sidebar-link a:hover {
   color: rgb(0, 0, 255);
 }
