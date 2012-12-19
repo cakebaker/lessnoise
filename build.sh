@@ -13,6 +13,7 @@ updateXML="$dir/update.xml"
 js="$dir/*.js"
 filters="$dir/filters/*.js"
 highlighters="$dir/highlighters/*.js"
+sidebar="$dir/sidebar/*.js"
 
 version=`grep "[0-9]\+.[0-9]\+.[0-9]\+$" $main -o`
 jquery=`grep "jquery-[0-9]\+.[0-9]\+.[0-9]\+.min.js$" lessnoise.user.js -o`
@@ -20,7 +21,7 @@ jquery=`grep "jquery-[0-9]\+.[0-9]\+.[0-9]\+.min.js$" lessnoise.user.js -o`
 rm $target -f
 
 # put all javascript files into a single file
-cat $main $(ls $js | grep -v $main) $filters $highlighters > $target
+cat $main $(ls $js | grep -v $main) $sidebar $filters $highlighters > $target
 
 # update version infos
 sed -i "s/\"version\":[^,]*/\"version\": \"$version\"/" $manifest

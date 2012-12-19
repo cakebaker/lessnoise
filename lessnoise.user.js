@@ -14,9 +14,9 @@
 // @require          tweet-filter-rule-menu.js
 // @require          filter.js
 // @require          filter-rules.js
-// @require          sidebar.js
-// @require          new-filter-rule-form.js
-// @require          filter-rule-list.js
+// @require          sidebar/sidebar.js
+// @require          sidebar/new-filter-rule-form.js
+// @require          sidebar/filter-rule-list.js
 // @require          filters/hashtag-filter.js
 // @require          filters/mention-filter.js
 // @require          filters/keyword-filter.js
