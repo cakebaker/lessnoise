@@ -1,14 +1,20 @@
 var Sidebar = function(parentElement, filter) {
   var className = 'ln-sidebar';
 
-  parentElement.append('<div class="ln-toggle-sidebar-link"><a href="#">+</a></div>')
+  parentElement.append('<div class="ln-toggle-sidebar-link"><a href="#" title="Show filters">+</a></div>')
                .find('div.ln-toggle-sidebar-link a')
                .click(toggleSidebar);
 
   function toggleSidebar() {
     var sidebar = $('div.' + className);
 
-    $(this).text($(this).text() === '+' ? '–' : '+');
+    if ($(this).text() === '+') {
+      $(this).text('-');
+      $(this).attr('title', 'Hide filters');
+    } else {
+      $(this).text('+');
+      $(this).attr('title', 'Show filters');
+    }
 
     if (sidebar.length > 0) {
       sidebar.toggle();
