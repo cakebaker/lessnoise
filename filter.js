@@ -1,6 +1,9 @@
 var Filter = function() {
   var filterRules = FilterRules();
-  var filters = [HashtagFilter(filterRules), MentionFilter(filterRules), KeywordFilter(filterRules)];
+  var filters = [HashtagFilter(filterRules),
+                 MentionFilter(filterRules),
+                 ForeignCharactersFilter(filterRules),
+                 KeywordFilter(filterRules)]; // KeywordFilter must be the last filter in the array as it accepts all filter rules
 
   function addFilterRule(filterRule) {
     var key = getFilterRulesKey(filterRule);
