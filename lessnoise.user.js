@@ -2,7 +2,7 @@
 // @name             LessNoise
 // @version          0.0.7
 // @namespace        https://github.com/cakebaker
-// @description      LessNoise improves Twitter's UI by hiding sidebar elements, showing expanded URLs, and more
+// @description      LessNoise is a filter for Twitter's timeline
 // @include          https://twitter.com/
 // @include          https://twitter.com/#
 // @require          lib/jquery-1.8.3.min.js
