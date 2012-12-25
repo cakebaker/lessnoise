@@ -31,6 +31,23 @@ var Tweet = function(streamItem) {
     return cache.id;
   }
 
+  // Returns either the author of a tweet, or the name of the retweeter if it is a retweet
+  function author() {
+    if (!cache.author) {
+      if (isRetweet()) {
+        cache.author = $(streamItem).find('div.stream-item-footer a.js-user-profile-link').attr('href').substring(1);
+      } else {
+        cache.author = $(streamItem).find('div.stream-item-header span.username b').text();
+      }
+    }
+
+    return cache.author;
+  }
+
+  function isRetweet() {
+    return $(streamItem).find('div.tweet').hasClass('with-social-proof');
+  }
+
   function hashtags() {
     if (!cache.hashtags) {
       cache.hashtags = getHashtags();
@@ -104,6 +121,7 @@ var Tweet = function(streamItem) {
 
   return {
     id: id,
+    author: author,
     hashtags: hashtags,
     mentions: mentions,
     links: links,
