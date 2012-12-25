@@ -38,8 +38,13 @@ var Sidebar = function(parentElement, filter) {
            '    <div class="flex-module-inner">' +
            '      <div>' +
            '        <form>' +
-           '          <input type="text" class="ln-new-filter-rule" placeholder="" />' +
+           '          <input type="text" class="ln-new-filter-rule" placeholder="" list="ln-filter-rules" />' +
            '          <input class="ln-new-filter-rule-btn" type="submit" value="Add" disabled="disabled" />' +
+           '          <datalist id="ln-filter-rules">' +
+           '            <option value="block @">' +
+           '            <option value="chinese characters">' +
+           '            <option value="japanese characters">' +
+           '          </datalist>' +
            '        </form>' +
            '      </div>' +
            '      <div class="flex-module-header">' +
