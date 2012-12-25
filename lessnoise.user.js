@@ -20,6 +20,7 @@
 // @require          filters/hashtag-filter.js
 // @require          filters/mention-filter.js
 // @require          filters/foreign-characters-filter.js
+// @require          filters/author-filter.js
 // @require          filters/keyword-filter.js
 // @require          highlighter.js
 // @require          highlighters/current-user-highlighter.js
