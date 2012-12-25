@@ -29,6 +29,8 @@ var TweetFilterRuleMenu = function(tweet, filter) {
     var filterRuleList = '';
     var listItemTemplate = '<li><a href="#" data-filter-rule="@@">@@</a></li>';
 
+    filterRuleList += listItemTemplate.replace(/@@/g, 'block @' + tweet.author());
+
     tweet.hashtags().forEach(function(hashtag) {
       filterRuleList += listItemTemplate.replace(/@@/g, '#' + hashtag);
     });
