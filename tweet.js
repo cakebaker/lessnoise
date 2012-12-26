@@ -45,7 +45,7 @@ var Tweet = function(streamItem) {
   }
 
   function isRetweet() {
-    return $(streamItem).find('div.tweet').hasClass('with-social-proof');
+    return $(streamItem).find('div.tweet').data('retweet-id') !== undefined;
   }
 
   function hashtags() {
