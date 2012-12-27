@@ -48,6 +48,22 @@ var Tweet = function(streamItem) {
     return $(streamItem).find('div.tweet').data('retweet-id') !== undefined;
   }
 
+  function characterSet() {
+    var txt = text();
+    var characterRanges = {
+      'japanese': '[\u3040-\u309F]+', // Hiragana
+      'chinese': '[\u4E00-\u9FCC\u3400-\u4DB5]+' // http://stackoverflow.com/questions/1366068/whats-the-complete-range-for-chinese-characters-in-unicode
+    }
+
+    for (var key in characterRanges) {
+      if ((new RegExp(characterRanges[key])).test(txt)) {
+        return key;
+      }
+    }
+
+    return undefined;
+  }
+
   function hashtags() {
     if (!cache.hashtags) {
       cache.hashtags = getHashtags();
@@ -122,6 +138,7 @@ var Tweet = function(streamItem) {
   return {
     id: id,
     author: author,
+    characterSet: characterSet,
     hashtags: hashtags,
     mentions: mentions,
     links: links,
