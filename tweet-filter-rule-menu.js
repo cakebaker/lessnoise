@@ -31,6 +31,11 @@ var TweetFilterRuleMenu = function(tweet, filter) {
 
     filterRuleList += listItemTemplate.replace(/@@/g, 'block @' + tweet.author());
 
+    var characterSet = tweet.characterSet();
+    if (characterSet !== undefined) {
+      filterRuleList += listItemTemplate.replace(/@@/g, characterSet + ' characters');
+    }
+
     tweet.hashtags().forEach(function(hashtag) {
       filterRuleList += listItemTemplate.replace(/@@/g, '#' + hashtag);
     });
