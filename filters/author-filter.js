@@ -10,7 +10,7 @@ var AuthorFilter = function(filterRulesStorage) {
   }
 
   function filter(tweet) {
-    return (blockedAuthors.indexOf(tweet.author()) > -1);
+    return (blockedAuthors.indexOf(tweet.author().toLowerCase()) > -1);
   }
 
   function updateBlockedAuthors() {
