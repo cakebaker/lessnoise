@@ -4,6 +4,7 @@ var Filter = function() {
                  MentionFilter(filterRules),
                  ForeignCharactersFilter(filterRules),
                  AuthorFilter(filterRules),
+                 RetweetFilter(filterRules),
                  KeywordFilter(filterRules)]; // KeywordFilter must be the last filter in the array as it accepts all filter rules
 
   function addFilterRule(filterRule) {

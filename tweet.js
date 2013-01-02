@@ -143,6 +143,7 @@ var Tweet = function(streamItem) {
     mentions: mentions,
     links: links,
     hasLinks: hasLinks,
+    isRetweet: isRetweet,
     text: text,
     hide: hide,
     unhide: unhide,

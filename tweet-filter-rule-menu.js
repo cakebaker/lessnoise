@@ -31,6 +31,10 @@ var TweetFilterRuleMenu = function(tweet, filter) {
 
     filterRuleList += listItemTemplate.replace(/@@/g, 'block @' + tweet.author());
 
+    if (tweet.isRetweet()) {
+      filterRuleList += listItemTemplate.replace(/@@/g, 'retweets from @' + tweet.author());
+    }
+
     var characterSet = tweet.characterSet();
     if (characterSet !== undefined) {
       filterRuleList += listItemTemplate.replace(/@@/g, characterSet + ' characters');

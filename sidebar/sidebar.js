@@ -44,6 +44,7 @@ var Sidebar = function(parentElement, filter) {
            '            <option value="block @">' +
            '            <option value="chinese characters">' +
            '            <option value="japanese characters">' +
+           '            <option value="retweets from @">' +
            '          </datalist>' +
            '        </form>' +
            '      </div>' +
