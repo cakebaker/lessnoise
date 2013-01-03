@@ -31,6 +31,19 @@ LessNoise is a [Greasemonkey](http://www.greasespot.net/) script to improve some
 * Open Chrome's extensions tab (Tools/Extensions)
 * Drag and drop the downloaded file to the extensions tab
 
+## Filters
+
+LessNoise currently provides six ways to filter out unwanted tweets:
+
+* `#example` filters out all tweets tagged with "example"
+* `@example` filters out all tweets mentioning the user "example"
+* `example` filters out all tweets containing the text "example"
+* `block @example` filters out all tweets from the user "example"
+* `retweets from @example` filters out all retweets from the user "example"
+* `chinese characters` and `japanese characters` filter out all tweets containing Chinese or Japanese characters, respectively
+
+You can add the filters manually via the filter form, or you can select a filter from the Filter menu that's available below each tweet.
+
 ## Changelog
 
 ### v0.0.7 (2012-12-15)
