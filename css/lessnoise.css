@@ -52,4 +52,5 @@ div.module.wtf-module, div.module.trends, div.module.site-footer, .new-tweets-ba
 
 .ln-toggle-sidebar-link a:hover {
   color: rgb(0, 0, 255);
+  text-decoration: none;
 }
