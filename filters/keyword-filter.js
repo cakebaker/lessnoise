@@ -10,9 +10,9 @@ var KeywordFilter = function(filterRulesStorage) {
   }
 
   function filter(tweet) {
+    var text = tweet.text().toLowerCase();
     return keywords.some(function(keyword) {
-      var regex = new RegExp(keyword, 'i');
-      return (tweet.text().search(regex) !== -1);
+      return (text.indexOf(keyword) !== -1);
     });
   }
 
