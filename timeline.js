@@ -3,11 +3,11 @@ var Timeline = function(highlighter, filter) {
   filter.onAdd(filterTweetsWithSingleFilter);
   filter.onRemove(refilterFilteredTweets);
 
-  $('div.stream-item').each(function() { processTweet(Tweet(this)) });
+  $('li.stream-item').each(function() { processTweet(Tweet(this)) });
 
   // watching for new tweets
   (function() {
-    var target = document.querySelector('div#stream-items-id');
+    var target = document.querySelector('ol#stream-items-id');
     var observer = new MutationObserver(handleMutations);
     observer.observe(target, { childList: true });
 
@@ -64,7 +64,7 @@ var Timeline = function(highlighter, filter) {
   function filterTweetsWithSingleFilter(filterRule) {
     var filterFn = filter.getFilter(filterRule);
 
-    $('div.stream-item').not('.ln-invisible').not('.ln-highlight').each(function() {
+    $('li.stream-item').not('.ln-invisible').not('.ln-highlight').each(function() {
       var tweet = Tweet($(this));
       if (filterFn(tweet)) {
         tweet.hide();
@@ -73,7 +73,7 @@ var Timeline = function(highlighter, filter) {
   }
 
   function refilterFilteredTweets() {
-    $('div.stream-item.ln-invisible').each(function() {
+    $('li.stream-item.ln-invisible').each(function() {
       var tweet = Tweet($(this));
       if (!filter.filter(tweet)) {
         tweet.unhide();

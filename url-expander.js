@@ -1,6 +1,6 @@
 var UrlExpander = function(tweet) {
   var listeners = [];
-  var links = $('div#stream-item-tweet-' + tweet.id()).find('a.twitter-timeline-link');
+  var links = $('li#stream-item-tweet-' + tweet.id()).find('a.twitter-timeline-link');
   var urlsToExpandCount = links.length;
   var expandedUrlsCount = 0;
 
