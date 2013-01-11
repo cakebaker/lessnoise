@@ -1,6 +1,6 @@
 {
   "name": "LessNoise",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "manifest_version": 2,
   "description": "LessNoise is a filter for Twitter's timeline",
   "update_url": "https://raw.github.com/cakebaker/lessnoise/master/update.xml",

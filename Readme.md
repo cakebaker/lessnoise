@@ -45,6 +45,11 @@ You can add the filters manually via the filter form, or you can select a filter
 
 ## Changelog
 
+### v0.0.9 (2013-01-11)
+
+* Adapting to changes on twitter.com
+* Bugfix: Fixing problem with some text filters like '?' or '(example'
+
 ### v0.0.8 (2013-01-05)
 
 * Adding filter to filter out all tweets of a user
