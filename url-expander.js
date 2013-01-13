@@ -10,15 +10,18 @@ var UrlExpander = function(tweet) {
     var urlToExpand = $(this).data('expanded-url');
 
     if (urlToExpand !== undefined) {
-      var linkElement = this;
-      GM_xmlhttpRequest({
-        url: urlToExpand,
-        method: "HEAD",
-        onload: function(response) { handleExpandedUrl(linkElement, processUrl(response.finalUrl)); }
-      });
+      expandUrl(this, urlToExpand);
     } else {
       urlsToExpandCount--;
     }
+  }
+
+  function expandUrl(linkElement, urlToExpand) {
+    GM_xmlhttpRequest({
+      url: urlToExpand,
+      method: "HEAD",
+      onload: function(response) { handleExpandedUrl(linkElement, processUrl(response.finalUrl)); }
+    });
   }
 
   function processUrl(url) {
