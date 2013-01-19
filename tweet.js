@@ -51,6 +51,7 @@ var Tweet = function(streamItem) {
   function characterSet() {
     var txt = text();
     var characterRanges = {
+      'arabic': '[\u0600-\u06FF]+', // http://en.wikipedia.org/wiki/Arabic_script_in_Unicode
       'japanese': '[\u3040-\u309F]+', // Hiragana
       'chinese': '[\u4E00-\u9FCC\u3400-\u4DB5]+' // http://stackoverflow.com/questions/1366068/whats-the-complete-range-for-chinese-characters-in-unicode
     }

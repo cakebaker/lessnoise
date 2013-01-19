@@ -47,6 +47,7 @@ var Sidebar = function(parentElement, filter) {
            '          <input class="ln-new-filter-rule-btn" type="submit" value="Add" disabled="disabled" />' +
            '          <datalist id="ln-filter-rules">' +
            '            <option value="block @">' +
+           '            <option value="arabic characters">' +
            '            <option value="chinese characters">' +
            '            <option value="japanese characters">' +
            '            <option value="retweets from @">' +

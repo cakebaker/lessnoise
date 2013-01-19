@@ -6,7 +6,7 @@ var ForeignCharactersFilter = function(filterRulesStorage) {
   filterRulesStorage.onUpdate(FILTER_RULES_KEY, updateCharacterSets);
 
   function accept(filterRule) {
-    return /^(japanese|chinese) characters$/.test(filterRule);
+    return /^(arabic|japanese|chinese) characters$/.test(filterRule);
   }
 
   function filter(tweet) {
