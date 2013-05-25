@@ -5,7 +5,7 @@
 // @description      LessNoise is a filter for Twitter's timeline
 // @include          https://twitter.com/
 // @include          https://twitter.com/#
-// @require          lib/jquery-2.0.0.min.js
+// @require          lib/jquery-2.0.1.min.js
 // @require          new-tweets-bar-clicker.js
 // @require          timeline.js
 // @require          url-expander.js
