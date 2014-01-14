@@ -44,13 +44,13 @@ div.module.wtf-module, div.module.trends, div.module.Footer, .new-tweets-bar {
 }
 
 .ln-toggle-sidebar-link a {
-  color: rgb(51, 51, 51);
+  color: rgb(229, 229, 255);
   text-decoration: none;
   font-weight: bold;
   padding: 1em;
 }
 
 .ln-toggle-sidebar-link a:hover {
-  color: rgb(0, 0, 255);
+  color: rgb(255, 255, 255);
   text-decoration: none;
 }
