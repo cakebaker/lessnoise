@@ -15,7 +15,7 @@ var FilterRules = function() {
 
   function remove(key, filterRule) {
     var filterRules = get(key);
-    var index = filterRules.indexOf(filterRule);
+    var index = filterRules.indexOf(filterRule.toString());
 
     if (index !== -1) {
       filterRules.splice(index, 1);
