@@ -18,7 +18,7 @@ var TweetFilterRuleMenu = function(tweet, filter) {
                   .click(toggleFilterRuleMenu);
 
   function toggleFilterRuleMenu() {
-    var filterRuleMenu = $(this).parents('div.stream-item-footer').find('div.ln-filter-list-module');
+    var filterRuleMenu = $(this).parents('div.content').find('div.ln-filter-list-module');
 
     if (filterRuleMenu.length > 0) {
       filterRuleMenu.toggle();
@@ -30,7 +30,7 @@ var TweetFilterRuleMenu = function(tweet, filter) {
   }
 
   function createFilterRuleMenu() {
-    $(tweetSelector).find('div.stream-item-footer').append('<div class="ln-filter-list-module"><ul class="ln-filter-list"></ul></div>');
+    $(tweetSelector).find('div.content').append('<div class="ln-filter-list-module"><ul class="ln-filter-list"></ul></div>');
     $(tweetSelector).find('ul.ln-filter-list').append(createFilterRuleList());
     $(tweetSelector).find('ul.ln-filter-list').on('click', 'a', addFilterRule);
     $(tweetSelector).find('div.ln-filter-list-module').toggle();
@@ -66,7 +66,7 @@ var TweetFilterRuleMenu = function(tweet, filter) {
   }
 
   function addFilterRule() {
-    $(this).parents('div.stream-item-footer').find('div.ln-filter-list-module').toggle();
+    $(this).parents('div.content').find('div.ln-filter-list-module').toggle();
 
     var newFilterRule = $(this).data('filter-rule');
     filter.addFilterRule(newFilterRule);
