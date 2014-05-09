@@ -41,5 +41,5 @@ $(document).ready(function() {
 
   var filter = Filter();
   Timeline(Highlighter(currentUser), filter);
-  Sidebar($('div.dashboard'), filter);
+  Sidebar($('div.dashboard-left'), filter);
 });
