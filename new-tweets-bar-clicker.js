@@ -14,7 +14,7 @@ var NewTweetsBarClicker = function() {
     unsafeWindow.$.fn.animate = animateFn;
   }
 
-  var target = document.querySelector('div.stream-container');
+  var target = document.querySelector('div.js-new-items-bar-container');
   var observer = new MutationObserver(clickNewTweetsBar);
   observer.observe(target, { childList: true });
 }
