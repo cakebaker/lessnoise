@@ -26,6 +26,9 @@
 // @require          highlighter.js
 // @require          highlighters/current-user-highlighter.js
 // @resource         css css/lessnoise.css
+// @grant            GM_xmlhttpRequest
+// @grant            GM_getResourceText
+// @grant            GM_addStyle
 // ==/UserScript==
 
 $(document).ready(function() {
