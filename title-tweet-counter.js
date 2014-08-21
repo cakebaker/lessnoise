@@ -1,7 +1,7 @@
 var TitleTweetCounter = function() {
   var tweetCount = 0;
 
-  window.onfocus = (function() {
+  window.addEventListener('focus', function() {
     tweetCount = 0;
     updateTitle();
   });
