@@ -40,7 +40,8 @@ $(document).ready(function() {
 
   var currentUser = $('div.js-mini-current-user').data('screen-name');
 
-  NewTweetsBarClicker();
+// XXX disable auto-clicking because I'm unable to stop Twitter's autoscrolling...
+//  NewTweetsBarClicker();
 
   var filter = Filter();
   Timeline(Highlighter(currentUser), filter);
