@@ -1,10 +1,10 @@
 var TweetFilterRuleMenu = function(tweet, filter) {
   var tweetSelector = 'li#stream-item-tweet-' + tweet.id();
 
-  $(tweetSelector).find('ul.tweet-actions')
-                  .prepend('<li class="ln-action-filter"><a title="Filter"><b>Filter</b></a></li>')
-                  .find('li.ln-action-filter a')
-                  .click(toggleFilterRuleMenu);
+  $(tweetSelector).find('div.js-actions')
+                .prepend('<div class="ProfileTweet-action ln-action-filter"><button class="ProfileTweet-actionButton js-tooltip u-textUserColorHover" title="Filter"><b>Filter</b></button></div>')
+                .find('div.ln-action-filter button')
+                .click(toggleFilterRuleMenu);
 
   function toggleFilterRuleMenu() {
     var filterRuleMenu = $(this).parents('div.content').find('div.ln-filter-list-module');
