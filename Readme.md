@@ -7,7 +7,6 @@ LessNoise is a [Greasemonkey](http://www.greasespot.net/) application to filter 
 * hide the "Who to follow" box
 * hide the trends box
 * hide the sidebar footer
-* automatically click on the "x new tweets" bar
 * bypass the t.co URL shortener
 * show expanded URLs
 * highlight tweets that mention the logged-in user
@@ -15,20 +14,11 @@ LessNoise is a [Greasemonkey](http://www.greasespot.net/) application to filter 
 ## Requirements
 
 * [Firefox](http://www.mozilla.org/en-US/firefox/new/) with the [Greasemonkey](http://www.greasespot.net/) add-on installed (check Tools/Add-ons to see whether Greasemonkey is installed)
-* or [Chrome](http://www.chromium.org/)
 
 ## Installation
 
-### Firefox
-
 * Install LessNoise by visiting [https://github.com/cakebaker/lessnoise/raw/master/lessnoise.user.js](https://github.com/cakebaker/lessnoise/raw/master/lessnoise.user.js).
 * You can also download the latest release from [https://github.com/cakebaker/lessnoise/tags](https://github.com/cakebaker/lessnoise/tags), unpack it, and install it by calling file:///path-to-where-you-have-unpacked-lessnoise/lessnoise.user.js in your browser
-
-### Chrome
-
-* Download the following file: [http://code.42dh.com/lessnoise/lessnoise.crx](http://code.42dh.com/lessnoise/lessnoise.crx)
-* Open Chrome's extensions tab (Tools/Extensions)
-* Drag and drop the downloaded file to the extensions tab
 
 ## Filters
 
@@ -39,11 +29,16 @@ LessNoise currently provides six ways to filter out unwanted tweets:
 * `example` filters out all tweets containing the text "example"
 * `block @example` filters out all tweets from the user "example"
 * `retweets from @example` filters out all retweets from the user "example"
-* `chinese characters` and `japanese characters` filter out all tweets containing Chinese or Japanese characters, respectively
+* `arabic characters`, `chinese characters` and `japanese characters` filter out all tweets containing Arabic, Chinese or Japanese characters, respectively
 
 You can add the filters manually via the filter form, or you can select a filter from the Filter menu that's available below each tweet.
 
 ## Changelog
+
+### v0.0.10 (2014-12-20)
+
+* Adding filter to filter out tweets containing Arabic characters
+* Dropping support for Chrome
 
 ### v0.0.9 (2013-01-11)
 

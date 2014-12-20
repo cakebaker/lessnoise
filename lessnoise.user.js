@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name             LessNoise
-// @version          0.0.9
+// @version          0.0.10
 // @namespace        https://github.com/cakebaker
 // @description      LessNoise is a filter for Twitter's timeline
 // @include          https://twitter.com/
