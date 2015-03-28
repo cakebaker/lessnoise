@@ -33,11 +33,7 @@
 // ==/UserScript==
 
 $(document).ready(function() {
-  // Chrome doesn't support GM_getResourceText(), it automatically loads the CSS file(s)
-  // specified in manifest.json
-  if (typeof(GM_getResourceText) != 'undefined') {
-    GM_addStyle(GM_getResourceText('css'));
-  }
+  GM_addStyle(GM_getResourceText('css'));
 
   var currentUser = $('div.js-mini-current-user').data('screen-name');
 
