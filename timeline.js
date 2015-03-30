@@ -3,7 +3,7 @@ var Timeline = function(highlighter, filter) {
   filter.onAdd(filterTweetsWithSingleFilter);
   filter.onRemove(refilterFilteredTweets);
 
-  $('li.stream-item').each(function() { processTweet(Tweet(this)) });
+  $('.js-stream-item').each(function() { processTweet(Tweet(this)) });
 
   // watching for new tweets
   (function() {
