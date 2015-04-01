@@ -4,7 +4,6 @@
 // @namespace        https://github.com/cakebaker
 // @description      LessNoise is a filter for Twitter's timeline
 // @include          https://twitter.com/
-// @include          https://twitter.com/#
 // @include          https://twitter.com/*
 // @require          lib/jquery-2.1.3.min.js
 // @require          new-tweets-bar-clicker.js
@@ -33,6 +32,7 @@
 // ==/UserScript==
 
 $(document).ready(function() {
+
   GM_addStyle(GM_getResourceText('css'));
 
   var currentUser = $('div.js-mini-current-user').data('screen-name');
