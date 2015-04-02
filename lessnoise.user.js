@@ -32,15 +32,11 @@
 // ==/UserScript==
 
 $(document).ready(function() {
-
   GM_addStyle(GM_getResourceText('css'));
 
   var currentUser = $('div.js-mini-current-user').data('screen-name');
-
-// XXX disable auto-clicking because I'm unable to stop Twitter's autoscrolling...
-//  NewTweetsBarClicker();
-
   var filter = Filter();
+
   Timeline(Highlighter(currentUser), filter);
   Sidebar($('div.dashboard-left'), filter);
 });
