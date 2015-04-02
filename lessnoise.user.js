@@ -35,8 +35,11 @@ $(document).ready(function() {
   GM_addStyle(GM_getResourceText('css'));
 
   var currentUser = $('div.js-mini-current-user').data('screen-name');
-  var filter = Filter();
 
-  Timeline(Highlighter(currentUser), filter);
-  Sidebar($('div.dashboard-left'), filter);
+  if (typeof(currentUser) != 'undefined') {
+    var filter = Filter();
+
+    Timeline(Highlighter(currentUser), filter);
+    Sidebar($('div.dashboard-left'), filter);
+  }
 });
