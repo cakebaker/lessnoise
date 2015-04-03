@@ -37,9 +37,21 @@ $(document).ready(function() {
   var currentUser = $('div.js-mini-current-user').data('screen-name');
 
   if (typeof(currentUser) != 'undefined') {
-    var filter = Filter();
+    var init = function() {
+      var filter = Filter();
 
-    Timeline(Highlighter(currentUser), filter);
-    Sidebar($('div.dashboard-left'), filter);
+      Timeline(Highlighter(currentUser), filter);
+      Sidebar($('div.dashboard-left'), filter);
+    };
+
+    init();
+
+    var location = window.location.href;
+    setInterval(function() {
+      if (location != window.location.href) {
+        location = window.location.href;
+        init();
+      }
+    }, 1000);
   }
 });

@@ -1,6 +1,8 @@
 var Sidebar = function(parentElement, filter) {
   var className = 'ln-sidebar';
 
+  $('div.ln-toggle-sidebar-link').remove();
+  $('div.ln-sidebar').remove();
   parentElement.append('<div class="ln-toggle-sidebar-link"><a href="#" title="Show filters">+</a></div>')
                .find('div.ln-toggle-sidebar-link a')
                .click(toggleSidebar)

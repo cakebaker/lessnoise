@@ -1,6 +1,7 @@
 var TweetFilterRuleMenu = function(tweet, filter) {
   var tweetSelector = 'li#stream-item-tweet-' + tweet.id();
 
+  $(tweetSelector + ' div.ln-action-filter').remove();
   $(tweetSelector).find('div.js-actions')
                 .prepend('<div class="ProfileTweet-action ln-action-filter"><button class="ProfileTweet-actionButton js-tooltip u-textUserColorHover" title="Filter"><b>Filter</b></button></div>')
                 .find('div.ln-action-filter button')
