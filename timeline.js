@@ -7,7 +7,9 @@ var Timeline = function(highlighter, filter) {
 
   // watching for new tweets
   (function() {
-    var target = document.querySelector('ol#stream-items-id');
+    // ol#stream-items-id:  used on "/" and "/i/notifications"
+    // .GridTimeline-items: used on "/<username>"
+    var target = document.querySelector('ol#stream-items-id') || document.querySelector('.GridTimeline-items');
     var observer = new MutationObserver(handleMutations);
     observer.observe(target, { childList: true });
 
@@ -21,7 +23,13 @@ var Timeline = function(highlighter, filter) {
 
     function handleNewTweets(addedNodes) {
       for (var i = 0; i < addedNodes.length; i++) {
-        processTweet(Tweet(addedNodes[i]));
+        if ($(addedNodes[i]).find('.js-stream-item').length == 0) {
+          // process tweet from "/" or "/i/notifications"
+          processTweet(Tweet(addedNodes[i]));
+        } else {
+          // process tweet from "/<username>"
+          processTweet(Tweet($(addedNodes[i]).find('.js-stream-item')));
+        }
       }
     }
   })();
