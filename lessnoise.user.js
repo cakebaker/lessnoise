@@ -41,7 +41,7 @@ $(document).ready(function() {
       var filter = Filter();
 
       Timeline(Highlighter(currentUser), filter);
-      Sidebar($('div.dashboard-left'), filter);
+      Sidebar($('div.dashboard-left, div.ProfileSidebar--withLeftAlignment'), filter);
     };
 
     init();
