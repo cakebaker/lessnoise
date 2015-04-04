@@ -44,13 +44,11 @@ div.WhoToFollow, div.module.wtf-module, div.module.trends, div.module.Footer {
 }
 
 .ln-toggle-sidebar-link a {
-  color: rgb(229, 229, 255);
   text-decoration: none;
   font-weight: bold;
   padding: 1em;
 }
 
 .ln-toggle-sidebar-link a:hover {
-  color: rgb(255, 255, 255);
   text-decoration: none;
 }
