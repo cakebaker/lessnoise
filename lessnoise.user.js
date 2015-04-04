@@ -37,10 +37,10 @@ $(document).ready(function() {
   var currentUser = $('div.js-mini-current-user').data('screen-name');
 
   if (typeof(currentUser) != 'undefined') {
-    var color = $('.ProfilePage, .user-style-' + currentUser).css('background-color');
-    GM_addStyle('.ln-toggle-sidebar-link a { color: ' + color + '; filter: invert(100%);}');
-
     var init = function() {
+      var color = $('.ProfilePage, .user-style-' + currentUser).css('background-color');
+      GM_addStyle('.ln-toggle-sidebar-link a { color: ' + color + '; filter: invert(100%);}');
+
       var filter = Filter();
 
       Timeline(Highlighter(currentUser), filter);
