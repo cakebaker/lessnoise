@@ -37,7 +37,7 @@ var Tweet = function(streamItem) {
       if (isRetweet()) {
         cache.author = $(streamItem).find('div.context a.js-user-profile-link').attr('href').substring(1);
       } else {
-        cache.author = $(streamItem).find('div.stream-item-header span.username b').text();
+        cache.author = $(streamItem).find('div.js-stream-tweet').data('screen-name');
       }
     }
 
