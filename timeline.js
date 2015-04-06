@@ -72,7 +72,7 @@ var Timeline = function(highlighter, filter) {
   function filterTweetsWithSingleFilter(filterRule) {
     var filterFn = filter.getFilter(filterRule);
 
-    $('li.stream-item').not('.ln-invisible').not('.ln-highlight').each(function() {
+    $('.js-stream-item').not('.ln-invisible').not('.ln-highlight').each(function() {
       var tweet = Tweet($(this));
       if (filterFn(tweet)) {
         tweet.hide();
@@ -81,7 +81,7 @@ var Timeline = function(highlighter, filter) {
   }
 
   function refilterFilteredTweets() {
-    $('li.stream-item.ln-invisible').each(function() {
+    $('.js-stream-item.ln-invisible').each(function() {
       var tweet = Tweet($(this));
       if (!filter.filter(tweet)) {
         tweet.unhide();
