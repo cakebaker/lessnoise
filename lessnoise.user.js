@@ -34,7 +34,7 @@
 $(document).ready(function() {
   GM_addStyle(GM_getResourceText('css'));
 
-  var currentUser = $('div.js-mini-current-user').data('screen-name');
+  var currentUser = $('span.DashboardProfileCard-screenname span.username b').text();
 
   if (typeof(currentUser) != 'undefined') {
     var init = function() {
