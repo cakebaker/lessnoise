@@ -1,0 +1,43 @@
+{
+  "manifest_version": 2,
+  "name": "lessnoise",
+  "author": "Daniel Hofstetter (@dhofstet)",
+  "version": "0.1.0",
+
+  "description": "lessnoise is a filter for Twitter's timeline",
+
+  "icons": {
+    "48": "icons/lessnoise.svg"
+  },
+
+  "permissions": ["<all_urls>"],
+
+  "content_scripts": [
+    {
+      "matches": ["https://twitter.com/*"],
+      "css": ["css/lessnoise.css"],
+      "js": [
+              "lib/jquery-3.2.1.min.js",
+              "sidebar/sidebar.js",
+              "sidebar/new-filter-rule-form.js",
+              "sidebar/filter-rule-list.js",
+              "highlighter.js",
+              "highlighters/current-user-highlighter.js",
+              "filters/hashtag-filter.js",
+              "filters/mention-filter.js",
+              "filters/foreign-characters-filter.js",
+              "filters/author-filter.js",
+              "filters/retweet-filter.js",
+              "filters/keyword-filter.js",
+              "filter-rules.js",
+              "filter.js",
+              "title-tweet-counter.js",
+              "tweet.js",
+              "tweet-filter-rule-menu.js",
+              "url-expander.js",
+              "timeline.js",
+              "lessnoise.js"
+            ]
+    }
+  ]
+}

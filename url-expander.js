@@ -17,10 +17,12 @@ var UrlExpander = function(tweet) {
   }
 
   function expandUrl(linkElement, urlToExpand) {
-    GM_xmlhttpRequest({
-      url: urlToExpand,
-      method: "HEAD",
-      onload: function(response) { handleExpandedUrl(linkElement, processUrl(response.finalUrl)); }
+    fetch(urlToExpand, {
+      method: 'head'
+    }).then(function(response) {
+      handleExpandedUrl(linkElement, processUrl(response.url));
+    }).catch(function(err) {
+      console.log(err);
     });
   }
 
