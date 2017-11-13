@@ -1,28 +1,26 @@
-# LessNoise
+# Lessnoise
 
 ## Purpose
 
-LessNoise is a [Greasemonkey](http://www.greasespot.net/) application to filter Twitter's timeline. It also improves some parts of Twitter's web UI, it does:
+Lessnoise is a web extension to filter Twitter's timeline. It also improves some parts of Twitter's web UI, it does:
 
 * hide the "Who to follow" box
 * hide the trends box
 * hide the sidebar footer
-* bypass the t.co URL shortener
-* show expanded URLs
-* highlight tweets that mention the logged-in user
+* hide promoted tweets
+* expand URLs
 
 ## Requirements
 
-* [Firefox](http://www.mozilla.org/en-US/firefox/new/) with the [Greasemonkey](http://www.greasespot.net/) add-on installed (check Tools/Add-ons to see whether Greasemonkey is installed)
+* [Firefox](https://www.mozilla.org/en-US/firefox/new/)
 
 ## Installation
 
-* Install LessNoise by visiting [https://github.com/cakebaker/lessnoise/raw/master/lessnoise.user.js](https://github.com/cakebaker/lessnoise/raw/master/lessnoise.user.js).
-* You can also download the latest release from [https://github.com/cakebaker/lessnoise/tags](https://github.com/cakebaker/lessnoise/tags), unpack it, and install it by calling file:///path-to-where-you-have-unpacked-lessnoise/lessnoise.user.js in your browser
+* You can install lessnoise via the Firefox Add-ons site: [https://addons.mozilla.org/en-US/firefox/addon/lessnoise/](https://addons.mozilla.org/en-US/firefox/addon/lessnoise/).
 
 ## Filters
 
-LessNoise currently provides six ways to filter out unwanted tweets:
+Lessnoise currently provides six ways to filter out unwanted tweets:
 
 * `#example` filters out all tweets tagged with "example"
 * `@example` filters out all tweets mentioning the user "example"
@@ -34,6 +32,11 @@ LessNoise currently provides six ways to filter out unwanted tweets:
 You can add the filters manually via the filter form, or you can select a filter from the Filter menu that's available below each tweet.
 
 ## Changelog
+
+### v0.1.0 (2017-11-13)
+
+* Turning lessnoise into a web extension
+* Removing dependency on Greasemonkey
 
 ### v0.0.10 (2014-12-20)
 
@@ -89,4 +92,4 @@ Feel free to contact me via Twitter ([@dhofstet](https://twitter.com/dhofstet)) 
 
 ## License
 
-LessNoise is licensed under the MIT license.
+Lessnoise is licensed under the MIT license.
