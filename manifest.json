@@ -39,5 +39,10 @@
               "lessnoise.js"
             ]
     }
-  ]
+  ],
+
+  "options_ui": {
+    "page": "options/options.html",
+    "browser_style": true
+  }
 }
