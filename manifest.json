@@ -36,7 +36,8 @@
               "tweet-filter-rule-menu.js",
               "url-expander.js",
               "timeline.js",
-              "lessnoise.js"
+              "lessnoise.js",
+              "ui-options-handler.js"
             ]
     }
   ],
