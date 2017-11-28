@@ -18,6 +18,10 @@ Lessnoise is a web extension to filter Twitter's timeline. It also improves some
 
 * You can install lessnoise via the Firefox Add-ons site: [https://addons.mozilla.org/en-US/firefox/addon/lessnoise/](https://addons.mozilla.org/en-US/firefox/addon/lessnoise/).
 
+## Configuration
+
+In the preferences you can specify which elements ("Who to follow", trends, and sidebar footer) of Twitter's web UI are shown. By default, all elements are hidden.
+
 ## Filters
 
 Lessnoise currently provides six ways to filter out unwanted tweets:
@@ -32,6 +36,10 @@ Lessnoise currently provides six ways to filter out unwanted tweets:
 You can add the filters manually via the filter form, or you can select a filter from the Filter menu that's available below each tweet.
 
 ## Changelog
+
+### v0.1.1 (2017-11-28)
+
+* Allowing configuration of which UI elements ("Who to follow", trends, sidebar footer) are visible
 
 ### v0.1.0 (2017-11-13)
 
