@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Lessnoise is a web extension to filter Twitter's timeline. It also improves some parts of Twitter's web UI, it does:
+Lessnoise is a web extension to filter your Twitter timeline. It also improves parts of Twitter's web UI, it does:
 
 * hide the "Who to follow" box
 * hide the trends box
@@ -16,7 +16,7 @@ Lessnoise is a web extension to filter Twitter's timeline. It also improves some
 
 ## Installation
 
-* You can install lessnoise via the Firefox Add-ons site: [https://addons.mozilla.org/en-US/firefox/addon/lessnoise/](https://addons.mozilla.org/en-US/firefox/addon/lessnoise/).
+You can install lessnoise via the Firefox Add-ons site: [https://addons.mozilla.org/en-US/firefox/addon/lessnoise/](https://addons.mozilla.org/en-US/firefox/addon/lessnoise/).
 
 ## Configuration
 
@@ -36,6 +36,10 @@ Lessnoise currently provides six ways to filter out unwanted tweets:
 You can add the filters manually via the filter form, or you can select a filter from the Filter menu that's available below each tweet.
 
 ## Changelog
+
+### v0.1.2 (2017-11-30)
+
+* Bugfix: Fixing issue with configuration settings being ignored after page transitions. Thanks to [@Osarahashi](https://twitter.com/Osarahashi) for reporting.
 
 ### v0.1.1 (2017-11-28)
 
