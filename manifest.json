@@ -10,7 +10,11 @@
     "48": "icons/lessnoise.svg"
   },
 
-  "permissions": ["<all_urls>", "storage"],
+  "permissions": ["<all_urls>", "storage", "webNavigation"],
+
+  "background": {
+    "scripts": ["background.js"]
+  },
 
   "content_scripts": [
     {
