@@ -1,4 +1,4 @@
-div.WhoToFollow, div.module.wtf-module, div.module.trends, div.module.Footer, div.eu-cookie-notice, .promoted-tweet {
+div[aria-label^="Timeline: Trending"], div.r-gzqks2, nav[aria-label="Footer"] {
   display: none !important;
 }
 
