@@ -12,10 +12,6 @@
 
   "permissions": ["<all_urls>", "storage", "webNavigation"],
 
-  "background": {
-    "scripts": ["background.js"]
-  },
-
   "content_scripts": [
     {
       "matches": ["https://twitter.com/*"],
@@ -44,10 +40,5 @@
               "ui-options-handler.js"
             ]
     }
-  ],
-
-  "options_ui": {
-    "page": "options/options.html",
-    "browser_style": true
-  }
+  ]
 }
