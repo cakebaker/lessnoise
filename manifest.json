@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "lessnoise",
   "author": "Daniel Hofstetter (@dhofstet)",
-  "version": "0.1.2",
+  "version": "0.1.2.1",
 
   "description": "lessnoise is a filter for your Twitter timeline",
 
